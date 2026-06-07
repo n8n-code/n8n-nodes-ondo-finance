@@ -54,10 +54,13 @@ export class OndoFinanceApi implements ICredentialType {
 	};
 
 	test: ICredentialTestRequest = {
-		request: {
-			baseURL: '={{$credentials.url}}',
-			url: '/',
-			method: 'GET',
-		},
-	};
+			"request": {
+				"baseURL": "={{ $credentials.baseUrl }}",
+				"url": "/v1/tickers",
+				"method": "GET",
+				"headers": {
+					"x-api-key": "={{ $credentials.apikey }}"
+				}
+			}
+		};
 }
