@@ -48,4 +48,29 @@ export const tickersDescription: INodeProperties[] = [
 				}
 			}
 		},
+		{
+			"displayName": "Api Key (Header)",
+			"name": "security_apikey",
+			"type": "string",
+			"default": "",
+			"description": "API key for apiKey (header: x-api-key)",
+			"required": false,
+			"routing": {
+				"request": {
+					"headers": {
+						"x-api-key": "={{ $value }}"
+					}
+				}
+			},
+			"displayOptions": {
+				"show": {
+					"resource": [
+						"Tickers"
+					],
+					"operation": [
+						"Get All Tickers"
+					]
+				}
+			}
+		},
 ];

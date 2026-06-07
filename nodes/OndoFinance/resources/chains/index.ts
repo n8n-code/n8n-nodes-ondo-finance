@@ -143,6 +143,31 @@ export const chainsDescription: INodeProperties[] = [
 			}
 		},
 		{
+			"displayName": "Api Key (Header)",
+			"name": "security_apikey",
+			"type": "string",
+			"default": "",
+			"description": "API key for apiKey (header: x-api-key)",
+			"required": false,
+			"routing": {
+				"request": {
+					"headers": {
+						"x-api-key": "={{ $value }}"
+					}
+				}
+			},
+			"displayOptions": {
+				"show": {
+					"resource": [
+						"Chains"
+					],
+					"operation": [
+						"Get Balances"
+					]
+				}
+			}
+		},
+		{
 			"displayName": "GET /v1/chains/{chainId}/tokens/{tokenAddress}/info",
 			"name": "operation",
 			"type": "notice",
@@ -200,6 +225,31 @@ export const chainsDescription: INodeProperties[] = [
 			"description": "The token contract address",
 			"default": "0x14c3abF95Cb9C93a8b82C1CdCB76D72Cb87b2d4c",
 			"type": "string",
+			"displayOptions": {
+				"show": {
+					"resource": [
+						"Chains"
+					],
+					"operation": [
+						"Get Token Info"
+					]
+				}
+			}
+		},
+		{
+			"displayName": "Api Key (Header)",
+			"name": "security_apikey",
+			"type": "string",
+			"default": "",
+			"description": "API key for apiKey (header: x-api-key)",
+			"required": false,
+			"routing": {
+				"request": {
+					"headers": {
+						"x-api-key": "={{ $value }}"
+					}
+				}
+			},
 			"displayOptions": {
 				"show": {
 					"resource": [
