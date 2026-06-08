@@ -10,7 +10,7 @@ export class OndoFinanceApi implements ICredentialType {
 
 	displayName = 'ondo-finance API';
 
-	icon: Icon = { light: 'file:../nodes/OndoFinance/ondo-finance.svg', dark: 'file:../nodes/OndoFinance/ondo-finance.dark.svg' };
+	icon: Icon = { light: 'file:../nodes/OndoFinance/ondo-finance.png', dark: 'file:../nodes/OndoFinance/ondo-finance.dark.png' };
 
 	documentationUrl = '';
 

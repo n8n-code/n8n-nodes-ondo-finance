@@ -10,7 +10,7 @@ export class OndoFinance implements INodeType {
 	description: INodeTypeDescription = {
 		displayName: 'ondo-finance',
 		name: 'N8nDevOndoFinance',
-		icon: { light: 'file:./ondo-finance.svg', dark: 'file:./ondo-finance.dark.svg' },
+		icon: { light: 'file:./ondo-finance.png', dark: 'file:./ondo-finance.dark.png' },
 		group: ['input'],
 		version: 1,
 		subtitle: '={{\$parameter["operation"] + ": " + \$parameter["resource"]}}',
