@@ -123,7 +123,7 @@ export const limitsDescription: INodeProperties[] = [
 			}
 		},
 		{
-			"displayName": "Api Key (Header)",
+			"displayName": "API Key (Header)",
 			"name": "security_apikey",
 			"type": "string",
 			"default": "",
@@ -192,7 +192,7 @@ export const limitsDescription: INodeProperties[] = [
 			}
 		},
 		{
-			"displayName": "Api Key (Header)",
+			"displayName": "API Key (Header)",
 			"name": "security_apikey",
 			"type": "string",
 			"default": "",

@@ -62,7 +62,7 @@ export const attestationsDescription: INodeProperties[] = [
 		},
 		{
 			"required": true,
-			"displayName": "Chain Id",
+			"displayName": "Chain ID",
 			"name": "chainId",
 			"type": "options",
 			"default": "ethereum-1",
@@ -249,7 +249,7 @@ export const attestationsDescription: INodeProperties[] = [
 			}
 		},
 		{
-			"displayName": "Api Key (Header)",
+			"displayName": "API Key (Header)",
 			"name": "security_apikey",
 			"type": "string",
 			"default": "",
@@ -294,7 +294,7 @@ export const attestationsDescription: INodeProperties[] = [
 		},
 		{
 			"required": true,
-			"displayName": "Chain Id",
+			"displayName": "Chain ID",
 			"name": "chainId",
 			"type": "options",
 			"default": "ethereum-1",
@@ -456,7 +456,7 @@ export const attestationsDescription: INodeProperties[] = [
 			}
 		},
 		{
-			"displayName": "Api Key (Header)",
+			"displayName": "API Key (Header)",
 			"name": "security_apikey",
 			"type": "string",
 			"default": "",

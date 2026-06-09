@@ -53,14 +53,61 @@ That's it. No configuration files. No code. It just works.
 
 ## Resources
 
-| Resource | Operations |
-|----------|------------|
-| Attestations | POST Request a Mint or Redeem Attestation, POST Request a Soft Attestation Quote |
-| Assets | GET Get Current Prices for All Supported Assets, GET Get Current Price for an Asset, GET Get Enhanced Prices for All Supported Assets, GET Get OHLC (Open, High, Low, Close) Data for an Asset, GET Get Market Data for All Supported Assets, GET Get Market Data for an Asset, GET Get Dividend Information for an Asset, GET Get All Contract Addresses Across Networks, GET Get Contract Addresses for an Asset, GET Get Metadata for All Supported Assets, GET Get Shares Multiplier History for an Asset |
-| Tickers | GET Get Price and Volume Data for All Supported Tickers |
-| Chains | GET Get Token Balances for a User or Token, GET Get Token Info |
-| Limits | GET Get Trading Limits, GET Get Session Limits |
-| Status | GET Get Current Market Status, GET Get Asset Statuses |
+<details>
+<summary><b>Attestations</b> (2 operations)</summary>
+
+- Post Request a Mint or Redeem Attestation
+- Post Request a Soft Attestation Quote
+
+</details>
+
+<details>
+<summary><b>Assets</b> (11 operations)</summary>
+
+- Get Current Prices for All Supported Assets
+- Get Current Price for an Asset
+- Get Enhanced Prices for All Supported Assets
+- Get OHLC Open High Low Close Data for an Asset
+- Get Market Data for All Supported Assets
+- Get Market Data for an Asset
+- Get Dividend Information for an Asset
+- Get All Contract Addresses Across Networks
+- Get Contract Addresses for an Asset
+- Get Metadata for All Supported Assets
+- Get Shares Multiplier History for an Asset
+
+</details>
+
+<details>
+<summary><b>Tickers</b> (1 operations)</summary>
+
+- Get Price and Volume Data for All Supported Tickers
+
+</details>
+
+<details>
+<summary><b>Chains</b> (2 operations)</summary>
+
+- Get Token Balances for a User or Token
+- Get Token Info
+
+</details>
+
+<details>
+<summary><b>Limits</b> (2 operations)</summary>
+
+- Get Trading Limits
+- Get Session Limits
+
+</details>
+
+<details>
+<summary><b>Status</b> (2 operations)</summary>
+
+- Get Current Market Status
+- Get Asset Statuses
+
+</details>
 
 ---
 

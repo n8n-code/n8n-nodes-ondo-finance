@@ -8,7 +8,7 @@ import type {
 export class OndoFinanceApi implements ICredentialType {
 	name = 'N8nDevOndoFinanceApi';
 
-	displayName = 'ondo-finance API';
+	displayName = 'Ondo Finance API';
 
 	icon: Icon = { light: 'file:../nodes/OndoFinance/ondo-finance.png', dark: 'file:../nodes/OndoFinance/ondo-finance.dark.png' };
 
@@ -22,7 +22,7 @@ export class OndoFinanceApi implements ICredentialType {
 			default: 'https://api.gm.ondo.finance',
 			required: true,
 			placeholder: 'https://api.gm.ondo.finance',
-			description: 'The base URL of your ondo-finance API server',
+			description: 'The base URL of your Ondo Finance API server',
 		},
 		{
 			displayName: 'API Key',

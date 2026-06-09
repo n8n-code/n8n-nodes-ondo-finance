@@ -8,14 +8,14 @@ import { statusDescription } from './resources/status';
 
 export class OndoFinance implements INodeType {
 	description: INodeTypeDescription = {
-		displayName: 'ondo-finance',
+		displayName: 'Ondo Finance',
 		name: 'N8nDevOndoFinance',
 		icon: { light: 'file:./ondo-finance.png', dark: 'file:./ondo-finance.dark.png' },
 		group: ['input'],
 		version: 1,
 		subtitle: '={{\$parameter["operation"] + ": " + \$parameter["resource"]}}',
-		description: 'Ondo Finance institutional-grade tokenized real-world assets platform bridging traditional finance and DeFi protocols',
-		defaults: { name: 'ondo-finance' },
+		description: 'Ondo Finance: institutional-grade tokenized RWA platform bridging TradFi and DeFi.',
+		defaults: { name: 'Ondo Finance' },
 		usableAsTool: true,
 		inputs: [NodeConnectionTypes.Main],
 		outputs: [NodeConnectionTypes.Main],
