@@ -1,6 +1,6 @@
 {
   "name": "@n8n-dev/n8n-nodes-ondo-finance",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Ondo Finance: institutional-grade tokenized RWA platform bridging TradFi and DeFi.",
   "license": "MIT",
   "homepage": "https://n8n-code.github.io/n8n-dev/#/n8n-nodes-ondo-finance",
