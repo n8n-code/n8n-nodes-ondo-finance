@@ -7,32 +7,32 @@ import { limitsDescription } from './resources/limits';
 import { statusDescription } from './resources/status';
 
 export class OndoFinance implements INodeType {
-	description: INodeTypeDescription = {
-		displayName: 'Ondo Finance',
-		name: 'N8nDevOndoFinance',
-		icon: { light: 'file:./ondo-finance.png', dark: 'file:./ondo-finance.dark.png' },
-		group: ['input'],
-		version: 1,
-		subtitle: '={{\$parameter["operation"] + ": " + \$parameter["resource"]}}',
-		description: 'Ondo Finance: institutional-grade tokenized RWA platform bridging TradFi and DeFi.',
-		defaults: { name: 'Ondo Finance' },
-		usableAsTool: true,
-		inputs: [NodeConnectionTypes.Main],
-		outputs: [NodeConnectionTypes.Main],
-		credentials: [
-			{
-				name: 'N8nDevOndoFinanceApi',
-				required: true,
-			},
-		],
-		requestDefaults: {
-			baseURL: '={{\$credentials.url}}',
-			headers: {
-				Accept: 'application/json',
-				'Content-Type': 'application/json',
-			},
-		},
-		properties: [
+        description: INodeTypeDescription = {
+                displayName: 'Ondo Finance',
+                name: 'N8nDevOndoFinance',
+                icon: { light: 'file:./ondo-finance.png', dark: 'file:./ondo-finance.dark.png' },
+                group: ['input'],
+                version: 1,
+                subtitle: '={{\$parameter["operation"] + ": " + \$parameter["resource"]}}',
+                description: 'Ondo Finance: institutional-grade tokenized RWA platform bridging TradFi and DeFi.',
+                defaults: { name: 'Ondo Finance' },
+                usableAsTool: true,
+                inputs: [NodeConnectionTypes.Main],
+                outputs: [NodeConnectionTypes.Main],
+                credentials: [
+                        {
+                                name: 'N8nDevOndoFinanceApi',
+                                required: true,
+                        },
+                ],
+                requestDefaults: {
+                        baseURL: '={{\$credentials.url}}',
+                        headers: {
+                                Accept: 'application/json',
+                                'Content-Type': 'application/json',
+                        },
+                },
+                properties: [
 		{
 			"displayName": "Resource",
 			"name": "resource",
@@ -78,6 +78,6 @@ export class OndoFinance implements INodeType {
 		...chainsDescription,
 		...limitsDescription,
 		...statusDescription
-		],
-	};
+                ],
+        };
 }
