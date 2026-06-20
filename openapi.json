@@ -2265,7 +2265,7 @@
           "Limits"
         ],
         "summary": "Get Session Limits",
-        "description": "Provides theoretical maximum asset-specific trading limits for each trading session. These limits are per-user, not global. This API reflects Ondo's statically defined limits; for dynamic, real-time values, see [Get Trading Limits](https://docs.ondo.finance/api-reference/limits/get-trading-limits).\n\nLimits:\n- The \"Max Attestation Count\" limits the number of non-expired, non-executed attestations. For example if the limit is 50, and a user has 50 outstanding attestations, they must wait for one to execute or expire before requesting another.\n- The \"Max Active Notional Value\" limit is based on the dollar value of outstanding attestations. That is, if a user has a limit of \\$1,000,000, and has 30 non-expired, non-filled attestations at a value of \\$999,000, they will not be able to request another attestation for \\$1000.\n\nFor caching details on this endpoint, please see: [Endpoint Caching](https://docs.ondo.finance/api-reference/endpoint-caching).\n",
+        "description": "Provides theoretical maximum asset-specific trading limits for each trading session. These limits are per-user, not global. This API reflects Ondo's statically defined limits; for dynamic, real-time values, see [Get Trading Limits](https://docs.ondo.finance/api-reference/limits/get-trading-limits).\n\nLimits are returned for each session: `premarket`, `regular`, `postmarket`, `overnight`, and `offhours`. The `offhours` block describes the limits that apply when the US equities market is closed for the day (for example, on weekends and holidays). For most assets, off-hours trading is disabled (`tradable: false`).\n\nLimits:\n- The \"Max Attestation Count\" limits the number of non-expired, non-executed attestations. For example if the limit is 50, and a user has 50 outstanding attestations, they must wait for one to execute or expire before requesting another.\n- The \"Max Active Notional Value\" limit is based on the dollar value of outstanding attestations. That is, if a user has a limit of \\$1,000,000, and has 30 non-expired, non-filled attestations at a value of \\$999,000, they will not be able to request another attestation for \\$1000.\n\nFor caching details on this endpoint, please see: [Endpoint Caching](https://docs.ondo.finance/api-reference/endpoint-caching).\n",
         "operationId": "getSessionLimits",
         "parameters": [
           {
@@ -2310,6 +2310,11 @@
                           "tradable": true,
                           "maxAttestationCount": "500",
                           "maxActiveNotionalValue": "200000"
+                        },
+                        "offhours": {
+                          "tradable": false,
+                          "maxAttestationCount": "0",
+                          "maxActiveNotionalValue": "0"
                         }
                       },
                       "..."
@@ -2408,7 +2413,7 @@
           "Status"
         ],
         "summary": "Get Current Market Status",
-        "description": "This endpoint retrieves the current status of the market, including whether it is open or closed, and any relevant information about trading pauses or restrictions. When the market is not open, the response provides details about the closure reason and expected reopening time.\n\n**Typical Market Sessions**\n\nThe following table outlines the standard market sessions with brief transitional pauses between each session period.\n\n| **Session**      | **Start Time**  | **End Time**   |\n|:-----------------|:---------------:|:--------------:|\n| Pause            | 3:55 AM ET      | 4:01 AM ET     |\n| **Premarket**    | **4:01 AM ET**  | **9:29 AM ET** |\n| Pause            | 9:29 AM ET      | 9:31 AM ET     |\n| **Regular**      | **9:31 AM ET**  | **3:59 PM ET** |\n| Pause            | 3:59 PM ET      | 4:01 PM ET     |\n| **Postmarket**   | **4:01 PM ET**  | **7:59 PM ET** |\n| Pause            | 7:59 PM ET      | 8:05 PM ET     |\n| **Overnight**    | **8:05 PM ET**  | **3:55 AM ET** |\n\n**Typical Holidays**\n\nGM observes the same holiday schedule as the [New York Stock Exchange](https://www.nyse.com/markets/hours-calendars). This includes early closes and observed holidays.\n\n**Unscheduled Downtime**\n\nIn the case of unscheduled downtime, trading may be paused without prior notice. This includes unexpected outages or maintenance events that impact GM's functionality.\n\n**Market Status Reason Codes**\n\nWhen the market is not open, the response will include a `reason` field which may include one of the following common codes:\n- `MARKET_CLOSED`: Market is closed.\n- `MARKET_PAUSED`: Market is temporarily paused.\n\n**Asset Tradability**\nThis endpoint only returns market-wide closures. For per-asset tradability, use the following endpoints:\n  * Individual assets may pause for dividends and other events, as indicated by `/v1/status/assets`. (See [Get Asset Statuses](https://docs.ondo.finance/api-reference/status/get-asset-statuses))\n  * Certain assets do not trade during the overnight and pre/postmarket session, as indicated by `/v1/assets/{symbol}/market`. (See [Get Market Data for an Asset](https://docs.ondo.finance/api-reference/assets/get-market-data-for-an-asset) / [Get Market Data for All Supported Assets](https://docs.ondo.finance/api-reference/assets/get-market-data-for-all-supported-assets))\n\n\nFor caching details on this endpoint, please see: [Endpoint Caching](https://docs.ondo.finance/api-reference/endpoint-caching).\n",
+        "description": "This endpoint retrieves the current status of the market, including whether it is open or closed, and any relevant information about trading pauses or restrictions. When the market is not open, the response provides details about the closure reason and expected reopening time.\n\n**Typical Market Sessions**\n\nThe following table outlines the standard market sessions with brief transitional pauses between each session period.\n\n| **Session**      | **Start Time**  | **End Time**   |\n|:-----------------|:---------------:|:--------------:|\n| Pause            | 3:55 AM ET      | 4:01 AM ET     |\n| **Premarket**    | **4:01 AM ET**  | **9:29 AM ET** |\n| Pause            | 9:29 AM ET      | 9:31 AM ET     |\n| **Regular**      | **9:31 AM ET**  | **3:59 PM ET** |\n| Pause            | 3:59 PM ET      | 4:01 PM ET     |\n| **Postmarket**   | **4:01 PM ET**  | **7:59 PM ET** |\n| Pause            | 7:59 PM ET      | 8:05 PM ET     |\n| **Overnight**    | **8:05 PM ET**  | **3:55 AM ET** |\n\n**Typical Holidays**\n\nGM observes the same holiday schedule as the [New York Stock Exchange](https://www.nyse.com/markets/hours-calendars). This includes early closes and observed holidays.\n\n**Unscheduled Downtime**\n\nIn the case of unscheduled downtime, trading may be paused without prior notice. This includes unexpected outages or maintenance events that impact GM's functionality.\n\n**Market Status Reason Codes**\n\nWhen the market is not open, the response will include a `reason` field which may include one of the following common codes:\n- `MARKET_CLOSED`: Market is closed.\n- `MARKET_PAUSED`: Market is temporarily paused.\n\n**Off-Hours Trading**\n\nThe `offhours` object reports the off-hours trading window as a parallel track alongside the conventional sessions. `marketStatus`, `isOpen`, `nextOpenSession`, `nextOpen`, and `nextClose` only reflect the four conventional sessions (regular, premarket, postmarket, overnight); a weekend or holiday with no active conventional session reads as `closed` on these fields. Off-hours tradability is reported separately via `offhours.isOpen`, `offhours.nextOpen`, and `offhours.nextClose`. The `offhours.nextOpen` and `offhours.nextClose` schedule fields are reported regardless of the off-hours global switch, while `offhours.isOpen` is true only when the off-hours window is tradable and the global switch is on.\n\n**Asset Tradability**\nThis endpoint only returns market-wide closures. For per-asset tradability, use the following endpoints:\n  * Individual assets may pause for dividends and other events, as indicated by `/v1/status/assets`. (See [Get Asset Statuses](https://docs.ondo.finance/api-reference/status/get-asset-statuses))\n  * Certain assets do not trade during the overnight and pre/postmarket session, as indicated by `/v1/assets/{symbol}/market`. (See [Get Market Data for an Asset](https://docs.ondo.finance/api-reference/assets/get-market-data-for-an-asset) / [Get Market Data for All Supported Assets](https://docs.ondo.finance/api-reference/assets/get-market-data-for-all-supported-assets))\n\n\nFor caching details on this endpoint, please see: [Endpoint Caching](https://docs.ondo.finance/api-reference/endpoint-caching).\n",
         "operationId": "getMarketStatus",
         "responses": {
           "200": {
@@ -3559,6 +3564,10 @@
           },
           "overnight": {
             "$ref": "#/components/schemas/SessionLimits"
+          },
+          "offhours": {
+            "$ref": "#/components/schemas/SessionLimits",
+            "description": "Trading limits that apply when the US equities market is closed for the day (e.g., weekends and holidays)."
           }
         },
         "required": [
@@ -3566,7 +3575,8 @@
           "premarket",
           "regular",
           "postmarket",
-          "overnight"
+          "overnight",
+          "offhours"
         ]
       },
       "SessionLimitsResponse": {
@@ -3695,13 +3705,43 @@
                 "example": null
               }
             ]
+          },
+          "offhours": {
+            "$ref": "#/components/schemas/OffhoursStatus"
           }
         },
         "required": [
           "timestamp",
           "isOpen",
           "marketStatus",
-          "nextOpenSession"
+          "nextOpenSession",
+          "offhours"
+        ]
+      },
+      "OffhoursStatus": {
+        "type": "object",
+        "description": "Status of the off-hours trading window, surfaced as a parallel track alongside the conventional session fields. The off-hours window is reported independently of the conventional sessions: `marketStatus` and `isOpen` reflect only the four conventional sessions (regular, premarket, postmarket, overnight), while this object reports off-hours tradability separately.",
+        "properties": {
+          "isOpen": {
+            "type": "boolean",
+            "description": "Indicates whether off-hours trading is currently open. This is true only while the off-hours window is tradable and the off-hours global switch is on.",
+            "example": false
+          },
+          "nextOpen": {
+            "type": "string",
+            "description": "The next off-hours window open time in ISO 8601 format (UTC). Reported regardless of the off-hours global switch.",
+            "example": "2026-06-19T00:05:00Z"
+          },
+          "nextClose": {
+            "type": "string",
+            "description": "The next off-hours window close time in ISO 8601 format (UTC). Reported regardless of the off-hours global switch.",
+            "example": "2026-06-21T23:55:00Z"
+          }
+        },
+        "required": [
+          "isOpen",
+          "nextOpen",
+          "nextClose"
         ]
       },
       "GetAssetStatusesResponse": {
