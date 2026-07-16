@@ -944,6 +944,7 @@
                       "sharesOutstanding": "424200000",
                       "marketCap": "149925006000"
                     },
+                    "constituentTokens": [],
                     "timestamp": 1755890061815
                   },
                   {
@@ -983,6 +984,7 @@
                       "sharesOutstanding": "307636373",
                       "marketCap": "139487499535"
                     },
+                    "constituentTokens": [],
                     "timestamp": 1755890062869
                   },
                   "..."
@@ -1099,6 +1101,7 @@
                     "sharesOutstanding": "424200000",
                     "marketCap": "149925006000"
                   },
+                  "constituentTokens": [],
                   "timestamp": 1755890061815
                 }
               }
@@ -3095,6 +3098,8 @@
           },
           "underlyingMarket": {
             "type": "object",
+            "nullable": true,
+            "description": "The off-chain stock that backs the token. This is `null` for tokens that represent several underlying assets rather than a single stock; for those, see `constituentTokens`. For a token backed by a single stock, this object is populated as shown.",
             "properties": {
               "ticker": {
                 "type": "string",
@@ -3143,6 +3148,18 @@
               }
             }
           },
+          "constituentTokens": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "GM token symbols of the underlying assets that make up this token, for tokens that represent several underlying assets rather than a single stock. Each symbol can be looked up individually via the market endpoints. For a token backed by a single stock this is an empty array (`[]`), and `underlyingMarket` is populated instead.",
+            "example": [
+              "AAPLon",
+              "MSFTon",
+              "NVDAon"
+            ]
+          },
           "timestamp": {
             "type": "number",
             "description": "The Unix timestamp in milliseconds when the data was last updated.",
@@ -3152,6 +3169,7 @@
         "required": [
           "primaryMarket",
           "underlyingMarket",
+          "constituentTokens",
           "timestamp"
         ]
       },
