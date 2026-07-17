@@ -86,25 +86,25 @@
                   "invalid_symbol": {
                     "summary": "Invalid Symbol",
                     "value": {
+                      "code": "INVALID_SYMBOL",
                       "message": "One of the request parameters is invalid.",
-                      "documentation": "https://docs.ondo.finance/api-reference/error-codes",
-                      "code": "INVALID_SYMBOL"
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#invalid_symbol"
                     }
                   },
                   "missing_user_address": {
                     "summary": "Missing User Address (Solana)",
                     "value": {
+                      "code": "MISSING_USER_ADDRESS",
                       "message": "missing user address",
-                      "documentation": "https://docs.ondo.finance/api-reference/error-codes",
-                      "code": "MISSING_USER_ADDRESS"
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#missing_user_address"
                     }
                   },
                   "invalid_user_address": {
                     "summary": "Invalid User Address (Solana)",
                     "value": {
+                      "code": "INVALID_USER_ADDRESS",
                       "message": "invalid user address",
-                      "documentation": "https://docs.ondo.finance/api-reference/error-codes",
-                      "code": "INVALID_USER_ADDRESS"
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#invalid_user_address"
                     }
                   }
                 }
@@ -121,8 +121,9 @@
                 "examples": {
                   "error": {
                     "value": {
+                      "code": "MISSING_API_KEY",
                       "message": "missing API key",
-                      "code": "MISSING_API_KEY"
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#missing_api_key"
                     }
                   }
                 }
@@ -142,7 +143,7 @@
                     "value": {
                       "code": "MARKET_CLOSED",
                       "message": "market is closed",
-                      "documentation": "https://docs.ondo.finance/api-reference/error-codes"
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#market_closed"
                     }
                   },
                   "asset_paused": {
@@ -150,7 +151,7 @@
                     "value": {
                       "code": "ASSET_PAUSED",
                       "message": "asset trading is paused",
-                      "documentation": "https://docs.ondo.finance/api-reference/error-codes"
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#asset_paused"
                     }
                   },
                   "read_only": {
@@ -158,7 +159,7 @@
                     "value": {
                       "code": "READ_ONLY_API_KEY",
                       "message": "read-only API key cannot perform write operations",
-                      "documentation": "https://docs.ondo.finance/api-reference/error-codes"
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#read_only_api_key"
                     }
                   }
                 }
@@ -177,7 +178,26 @@
                     "value": {
                       "code": "ASSET_NOT_FOUND",
                       "message": "asset not found",
-                      "documentation": "https://docs.ondo.finance/api-reference/error-codes"
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#asset_not_found"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "The account has exceeded its rate limits. Please see the returned message and documentation for details.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "examples": {
+                  "error": {
+                    "value": {
+                      "code": "RATE_LIMITED",
+                      "message": "rate limit exceeded",
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#rate_limited"
                     }
                   }
                 }
@@ -194,8 +214,9 @@
                 "examples": {
                   "error": {
                     "value": {
+                      "code": "INTERNAL_ERROR",
                       "message": "An internal server error occurred. Please see the returned message and documentation for details.",
-                      "code": "INTERNAL_ERROR"
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#internal_error"
                     }
                   }
                 }
@@ -256,9 +277,9 @@
                 "examples": {
                   "error": {
                     "value": {
+                      "code": "INVALID_SYMBOL",
                       "message": "One of the request parameters is invalid.",
-                      "documentation": "https://docs.ondo.finance/api-reference/error-codes",
-                      "code": "INVALID_SYMBOL"
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#invalid_symbol"
                     }
                   }
                 }
@@ -275,8 +296,9 @@
                 "examples": {
                   "error": {
                     "value": {
+                      "code": "MISSING_API_KEY",
                       "message": "missing API key",
-                      "code": "MISSING_API_KEY"
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#missing_api_key"
                     }
                   }
                 }
@@ -296,7 +318,7 @@
                     "value": {
                       "code": "MARKET_CLOSED",
                       "message": "market is closed",
-                      "documentation": "https://docs.ondo.finance/api-reference/error-codes"
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#market_closed"
                     }
                   },
                   "asset_paused": {
@@ -304,7 +326,7 @@
                     "value": {
                       "code": "ASSET_PAUSED",
                       "message": "asset trading is paused",
-                      "documentation": "https://docs.ondo.finance/api-reference/error-codes"
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#asset_paused"
                     }
                   },
                   "read_only": {
@@ -312,7 +334,7 @@
                     "value": {
                       "code": "READ_ONLY_API_KEY",
                       "message": "read-only API key cannot perform write operations",
-                      "documentation": "https://docs.ondo.finance/api-reference/error-codes"
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#read_only_api_key"
                     }
                   }
                 }
@@ -331,7 +353,26 @@
                     "value": {
                       "code": "ASSET_NOT_FOUND",
                       "message": "asset not found",
-                      "documentation": "https://docs.ondo.finance/api-reference/error-codes"
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#asset_not_found"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "The account has exceeded its rate limits. Please see the returned message and documentation for details.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "examples": {
+                  "error": {
+                    "value": {
+                      "code": "RATE_LIMITED",
+                      "message": "rate limit exceeded",
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#rate_limited"
                     }
                   }
                 }
@@ -348,8 +389,9 @@
                 "examples": {
                   "error": {
                     "value": {
+                      "code": "INTERNAL_ERROR",
                       "message": "An internal server error occurred. Please see the returned message and documentation for details.",
-                      "code": "INTERNAL_ERROR"
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#internal_error"
                     }
                   }
                 }
@@ -438,7 +480,7 @@
                     "value": {
                       "code": "INVALID_SYMBOL",
                       "message": "invalid symbol; must be at least 3 characters long and end with 'on'",
-                      "documentation": "https://docs.ondo.finance/api-reference/error-codes"
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#invalid_symbol"
                     }
                   }
                 }
@@ -455,8 +497,28 @@
                 "examples": {
                   "error": {
                     "value": {
+                      "code": "MISSING_API_KEY",
                       "message": "missing API key",
-                      "code": "MISSING_API_KEY"
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#missing_api_key"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "The account has exceeded its rate limits. Please see the returned message and documentation for details.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "examples": {
+                  "error": {
+                    "value": {
+                      "code": "RATE_LIMITED",
+                      "message": "rate limit exceeded",
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#rate_limited"
                     }
                   }
                 }
@@ -473,8 +535,9 @@
                 "examples": {
                   "error": {
                     "value": {
+                      "code": "INTERNAL_ERROR",
                       "message": "An internal server error occurred. Please see the returned message and documentation for details.",
-                      "code": "INTERNAL_ERROR"
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#internal_error"
                     }
                   }
                 }
@@ -532,7 +595,7 @@
                     "value": {
                       "code": "INVALID_SYMBOL",
                       "message": "invalid symbol; must be at least 3 characters long and end with 'on'",
-                      "documentation": "https://docs.ondo.finance/api-reference/error-codes"
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#invalid_symbol"
                     }
                   }
                 }
@@ -549,8 +612,9 @@
                 "examples": {
                   "error": {
                     "value": {
+                      "code": "MISSING_API_KEY",
                       "message": "missing API key",
-                      "code": "MISSING_API_KEY"
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#missing_api_key"
                     }
                   }
                 }
@@ -567,8 +631,28 @@
                 "examples": {
                   "error": {
                     "value": {
+                      "code": "ASSET_NOT_FOUND",
                       "message": "The provided asset symbol does not exist and cannot be found.",
-                      "code": "ASSET_NOT_FOUND"
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#asset_not_found"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "The account has exceeded its rate limits. Please see the returned message and documentation for details.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "examples": {
+                  "error": {
+                    "value": {
+                      "code": "RATE_LIMITED",
+                      "message": "rate limit exceeded",
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#rate_limited"
                     }
                   }
                 }
@@ -585,8 +669,9 @@
                 "examples": {
                   "error": {
                     "value": {
+                      "code": "INTERNAL_ERROR",
                       "message": "An internal server error occurred. Please see the returned message and documentation for details.",
-                      "code": "INTERNAL_ERROR"
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#internal_error"
                     }
                   }
                 }
@@ -668,7 +753,7 @@
                     "value": {
                       "code": "INVALID_SYMBOL",
                       "message": "invalid symbol; must be at least 3 characters long and end with 'on'",
-                      "documentation": "https://docs.ondo.finance/api-reference/error-codes"
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#invalid_symbol"
                     }
                   }
                 }
@@ -685,8 +770,28 @@
                 "examples": {
                   "error": {
                     "value": {
+                      "code": "MISSING_API_KEY",
                       "message": "missing API key",
-                      "code": "MISSING_API_KEY"
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#missing_api_key"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "The account has exceeded its rate limits. Please see the returned message and documentation for details.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "examples": {
+                  "error": {
+                    "value": {
+                      "code": "RATE_LIMITED",
+                      "message": "rate limit exceeded",
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#rate_limited"
                     }
                   }
                 }
@@ -703,8 +808,9 @@
                 "examples": {
                   "error": {
                     "value": {
+                      "code": "INTERNAL_ERROR",
                       "message": "An internal server error occurred. Please see the returned message and documentation for details.",
-                      "code": "INTERNAL_ERROR"
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#internal_error"
                     }
                   }
                 }
@@ -822,9 +928,9 @@
                 "examples": {
                   "error": {
                     "value": {
+                      "code": "INVALID_SYMBOL",
                       "message": "One of the request parameters is invalid.",
-                      "documentation": "https://docs.ondo.finance/api-reference/error-codes",
-                      "code": "INVALID_SYMBOL"
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#invalid_symbol"
                     }
                   }
                 }
@@ -841,8 +947,9 @@
                 "examples": {
                   "error": {
                     "value": {
+                      "code": "MISSING_API_KEY",
                       "message": "missing API key",
-                      "code": "MISSING_API_KEY"
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#missing_api_key"
                     }
                   }
                 }
@@ -859,8 +966,28 @@
                 "examples": {
                   "error": {
                     "value": {
+                      "code": "ASSET_NOT_FOUND",
                       "message": "The provided asset symbol does not exist and cannot be found.",
-                      "code": "ASSET_NOT_FOUND"
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#asset_not_found"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "The account has exceeded its rate limits. Please see the returned message and documentation for details.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "examples": {
+                  "error": {
+                    "value": {
+                      "code": "RATE_LIMITED",
+                      "message": "rate limit exceeded",
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#rate_limited"
                     }
                   }
                 }
@@ -877,8 +1004,9 @@
                 "examples": {
                   "error": {
                     "value": {
+                      "code": "INTERNAL_ERROR",
                       "message": "An internal server error occurred. Please see the returned message and documentation for details.",
-                      "code": "INTERNAL_ERROR"
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#internal_error"
                     }
                   }
                 }
@@ -1002,8 +1130,28 @@
                 "examples": {
                   "error": {
                     "value": {
+                      "code": "MISSING_API_KEY",
                       "message": "missing API key",
-                      "code": "MISSING_API_KEY"
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#missing_api_key"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "The account has exceeded its rate limits. Please see the returned message and documentation for details.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "examples": {
+                  "error": {
+                    "value": {
+                      "code": "RATE_LIMITED",
+                      "message": "rate limit exceeded",
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#rate_limited"
                     }
                   }
                 }
@@ -1020,8 +1168,9 @@
                 "examples": {
                   "error": {
                     "value": {
+                      "code": "INTERNAL_ERROR",
                       "message": "An internal server error occurred. Please see the returned message and documentation for details.",
-                      "code": "INTERNAL_ERROR"
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#internal_error"
                     }
                   }
                 }
@@ -1119,7 +1268,7 @@
                     "value": {
                       "code": "INVALID_SYMBOL",
                       "message": "invalid symbol; must be at least 3 characters long and end with 'on'",
-                      "documentation": "https://docs.ondo.finance/api-reference/error-codes"
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#invalid_symbol"
                     }
                   }
                 }
@@ -1136,8 +1285,9 @@
                 "examples": {
                   "error": {
                     "value": {
+                      "code": "MISSING_API_KEY",
                       "message": "missing API key",
-                      "code": "MISSING_API_KEY"
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#missing_api_key"
                     }
                   }
                 }
@@ -1154,8 +1304,28 @@
                 "examples": {
                   "error": {
                     "value": {
+                      "code": "ASSET_NOT_FOUND",
                       "message": "The provided asset symbol does not exist and cannot be found.",
-                      "code": "ASSET_NOT_FOUND"
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#asset_not_found"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "The account has exceeded its rate limits. Please see the returned message and documentation for details.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "examples": {
+                  "error": {
+                    "value": {
+                      "code": "RATE_LIMITED",
+                      "message": "rate limit exceeded",
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#rate_limited"
                     }
                   }
                 }
@@ -1172,8 +1342,9 @@
                 "examples": {
                   "error": {
                     "value": {
+                      "code": "INTERNAL_ERROR",
                       "message": "An internal server error occurred. Please see the returned message and documentation for details.",
-                      "code": "INTERNAL_ERROR"
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#internal_error"
                     }
                   }
                 }
@@ -1231,7 +1402,7 @@
                     "value": {
                       "code": "INVALID_SYMBOL",
                       "message": "invalid symbol; must be at least 3 characters long and end with 'on'",
-                      "documentation": "https://docs.ondo.finance/api-reference/error-codes"
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#invalid_symbol"
                     }
                   }
                 }
@@ -1248,8 +1419,9 @@
                 "examples": {
                   "error": {
                     "value": {
+                      "code": "MISSING_API_KEY",
                       "message": "missing API key",
-                      "code": "MISSING_API_KEY"
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#missing_api_key"
                     }
                   }
                 }
@@ -1266,8 +1438,28 @@
                 "examples": {
                   "error": {
                     "value": {
+                      "code": "ASSET_NOT_FOUND",
                       "message": "The provided asset symbol does not exist and cannot be found.",
-                      "code": "ASSET_NOT_FOUND"
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#asset_not_found"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "The account has exceeded its rate limits. Please see the returned message and documentation for details.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "examples": {
+                  "error": {
+                    "value": {
+                      "code": "RATE_LIMITED",
+                      "message": "rate limit exceeded",
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#rate_limited"
                     }
                   }
                 }
@@ -1284,8 +1476,9 @@
                 "examples": {
                   "error": {
                     "value": {
+                      "code": "INTERNAL_ERROR",
                       "message": "An internal server error occurred. Please see the returned message and documentation for details.",
-                      "code": "INTERNAL_ERROR"
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#internal_error"
                     }
                   }
                 }
@@ -1365,8 +1558,28 @@
                 "examples": {
                   "error": {
                     "value": {
+                      "code": "MISSING_API_KEY",
                       "message": "missing API key",
-                      "code": "MISSING_API_KEY"
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#missing_api_key"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "The account has exceeded its rate limits. Please see the returned message and documentation for details.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "examples": {
+                  "error": {
+                    "value": {
+                      "code": "RATE_LIMITED",
+                      "message": "rate limit exceeded",
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#rate_limited"
                     }
                   }
                 }
@@ -1383,8 +1596,9 @@
                 "examples": {
                   "error": {
                     "value": {
+                      "code": "INTERNAL_ERROR",
                       "message": "An internal server error occurred. Please see the returned message and documentation for details.",
-                      "code": "INTERNAL_ERROR"
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#internal_error"
                     }
                   }
                 }
@@ -1460,7 +1674,7 @@
                     "value": {
                       "code": "INVALID_SYMBOL",
                       "message": "invalid symbol; must be at least 3 characters long and end with 'on'",
-                      "documentation": "https://docs.ondo.finance/api-reference/error-codes"
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#invalid_symbol"
                     }
                   }
                 }
@@ -1477,8 +1691,9 @@
                 "examples": {
                   "error": {
                     "value": {
+                      "code": "MISSING_API_KEY",
                       "message": "missing API key",
-                      "code": "MISSING_API_KEY"
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#missing_api_key"
                     }
                   }
                 }
@@ -1495,8 +1710,28 @@
                 "examples": {
                   "error": {
                     "value": {
+                      "code": "ASSET_NOT_FOUND",
                       "message": "The provided asset symbol does not exist and cannot be found.",
-                      "code": "ASSET_NOT_FOUND"
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#asset_not_found"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "The account has exceeded its rate limits. Please see the returned message and documentation for details.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "examples": {
+                  "error": {
+                    "value": {
+                      "code": "RATE_LIMITED",
+                      "message": "rate limit exceeded",
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#rate_limited"
                     }
                   }
                 }
@@ -1513,8 +1748,9 @@
                 "examples": {
                   "error": {
                     "value": {
+                      "code": "INTERNAL_ERROR",
                       "message": "An internal server error occurred. Please see the returned message and documentation for details.",
-                      "code": "INTERNAL_ERROR"
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#internal_error"
                     }
                   }
                 }
@@ -1608,8 +1844,28 @@
                 "examples": {
                   "error": {
                     "value": {
+                      "code": "MISSING_API_KEY",
                       "message": "missing API key",
-                      "code": "MISSING_API_KEY"
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#missing_api_key"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "The account has exceeded its rate limits. Please see the returned message and documentation for details.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "examples": {
+                  "error": {
+                    "value": {
+                      "code": "RATE_LIMITED",
+                      "message": "rate limit exceeded",
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#rate_limited"
                     }
                   }
                 }
@@ -1626,8 +1882,9 @@
                 "examples": {
                   "error": {
                     "value": {
+                      "code": "INTERNAL_ERROR",
                       "message": "An internal server error occurred. Please see the returned message and documentation for details.",
-                      "code": "INTERNAL_ERROR"
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#internal_error"
                     }
                   }
                 }
@@ -1710,9 +1967,9 @@
                 "examples": {
                   "error": {
                     "value": {
+                      "code": "INVALID_SYMBOL",
                       "message": "One of the request parameters is invalid.",
-                      "documentation": "https://docs.ondo.finance/api-reference/error-codes",
-                      "code": "INVALID_SYMBOL"
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#invalid_symbol"
                     }
                   }
                 }
@@ -1729,8 +1986,9 @@
                 "examples": {
                   "error": {
                     "value": {
+                      "code": "MISSING_API_KEY",
                       "message": "missing API key",
-                      "code": "MISSING_API_KEY"
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#missing_api_key"
                     }
                   }
                 }
@@ -1747,8 +2005,28 @@
                 "examples": {
                   "error": {
                     "value": {
+                      "code": "ASSET_NOT_FOUND",
                       "message": "The provided asset symbol does not exist and cannot be found.",
-                      "code": "ASSET_NOT_FOUND"
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#asset_not_found"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "The account has exceeded its rate limits. Please see the returned message and documentation for details.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "examples": {
+                  "error": {
+                    "value": {
+                      "code": "RATE_LIMITED",
+                      "message": "rate limit exceeded",
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#rate_limited"
                     }
                   }
                 }
@@ -1765,8 +2043,9 @@
                 "examples": {
                   "error": {
                     "value": {
+                      "code": "INTERNAL_ERROR",
                       "message": "An internal server error occurred. Please see the returned message and documentation for details.",
-                      "code": "INTERNAL_ERROR"
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#internal_error"
                     }
                   }
                 }
@@ -1832,8 +2111,28 @@
                 "examples": {
                   "error": {
                     "value": {
+                      "code": "MISSING_API_KEY",
                       "message": "missing API key",
-                      "code": "MISSING_API_KEY"
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#missing_api_key"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "The account has exceeded its rate limits. Please see the returned message and documentation for details.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "examples": {
+                  "error": {
+                    "value": {
+                      "code": "RATE_LIMITED",
+                      "message": "rate limit exceeded",
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#rate_limited"
                     }
                   }
                 }
@@ -1850,8 +2149,9 @@
                 "examples": {
                   "error": {
                     "value": {
+                      "code": "INTERNAL_ERROR",
                       "message": "An internal server error occurred. Please see the returned message and documentation for details.",
-                      "code": "INTERNAL_ERROR"
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#internal_error"
                     }
                   }
                 }
@@ -1974,9 +2274,9 @@
                 "examples": {
                   "error": {
                     "value": {
+                      "code": "INVALID_SYMBOL",
                       "message": "One of the request parameters is invalid.",
-                      "documentation": "https://docs.ondo.finance/api-reference/error-codes",
-                      "code": "INVALID_SYMBOL"
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#invalid_symbol"
                     }
                   }
                 }
@@ -1993,8 +2293,28 @@
                 "examples": {
                   "error": {
                     "value": {
+                      "code": "MISSING_API_KEY",
                       "message": "missing API key",
-                      "code": "MISSING_API_KEY"
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#missing_api_key"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "The account has exceeded its rate limits. Please see the returned message and documentation for details.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "examples": {
+                  "error": {
+                    "value": {
+                      "code": "RATE_LIMITED",
+                      "message": "rate limit exceeded",
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#rate_limited"
                     }
                   }
                 }
@@ -2011,8 +2331,9 @@
                 "examples": {
                   "error": {
                     "value": {
+                      "code": "INTERNAL_ERROR",
                       "message": "An internal server error occurred. Please see the returned message and documentation for details.",
-                      "code": "INTERNAL_ERROR"
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#internal_error"
                     }
                   }
                 }
@@ -2077,9 +2398,9 @@
                 "examples": {
                   "error": {
                     "value": {
+                      "code": "INVALID_SYMBOL",
                       "message": "One of the request parameters is invalid.",
-                      "documentation": "https://docs.ondo.finance/api-reference/error-codes",
-                      "code": "INVALID_SYMBOL"
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#invalid_symbol"
                     }
                   }
                 }
@@ -2096,8 +2417,28 @@
                 "examples": {
                   "error": {
                     "value": {
+                      "code": "MISSING_API_KEY",
                       "message": "missing API key",
-                      "code": "MISSING_API_KEY"
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#missing_api_key"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "The account has exceeded its rate limits. Please see the returned message and documentation for details.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "examples": {
+                  "error": {
+                    "value": {
+                      "code": "RATE_LIMITED",
+                      "message": "rate limit exceeded",
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#rate_limited"
                     }
                   }
                 }
@@ -2114,8 +2455,9 @@
                 "examples": {
                   "error": {
                     "value": {
+                      "code": "INTERNAL_ERROR",
                       "message": "An internal server error occurred. Please see the returned message and documentation for details.",
-                      "code": "INTERNAL_ERROR"
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#internal_error"
                     }
                   }
                 }
@@ -2181,9 +2523,9 @@
                 "examples": {
                   "error": {
                     "value": {
+                      "code": "INVALID_SYMBOL",
                       "message": "One of the request parameters is invalid.",
-                      "documentation": "https://docs.ondo.finance/api-reference/error-codes",
-                      "code": "INVALID_SYMBOL"
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#invalid_symbol"
                     }
                   }
                 }
@@ -2200,8 +2542,9 @@
                 "examples": {
                   "error": {
                     "value": {
+                      "code": "MISSING_API_KEY",
                       "message": "missing API key",
-                      "code": "MISSING_API_KEY"
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#missing_api_key"
                     }
                   }
                 }
@@ -2221,7 +2564,7 @@
                     "value": {
                       "code": "MARKET_CLOSED",
                       "message": "market is closed",
-                      "documentation": "https://docs.ondo.finance/api-reference/error-codes"
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#market_closed"
                     }
                   },
                   "asset_paused": {
@@ -2229,7 +2572,26 @@
                     "value": {
                       "code": "ASSET_PAUSED",
                       "message": "asset trading is paused",
-                      "documentation": "https://docs.ondo.finance/api-reference/error-codes"
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#asset_paused"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "The account has exceeded its rate limits. Please see the returned message and documentation for details.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "examples": {
+                  "error": {
+                    "value": {
+                      "code": "RATE_LIMITED",
+                      "message": "rate limit exceeded",
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#rate_limited"
                     }
                   }
                 }
@@ -2246,8 +2608,9 @@
                 "examples": {
                   "error": {
                     "value": {
+                      "code": "INTERNAL_ERROR",
                       "message": "An internal server error occurred. Please see the returned message and documentation for details.",
-                      "code": "INTERNAL_ERROR"
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#internal_error"
                     }
                   }
                 }
@@ -2338,9 +2701,9 @@
                 "examples": {
                   "error": {
                     "value": {
+                      "code": "INVALID_SYMBOL",
                       "message": "One of the request parameters is invalid.",
-                      "documentation": "https://docs.ondo.finance/api-reference/error-codes",
-                      "code": "INVALID_SYMBOL"
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#invalid_symbol"
                     }
                   }
                 }
@@ -2357,8 +2720,9 @@
                 "examples": {
                   "error": {
                     "value": {
+                      "code": "MISSING_API_KEY",
                       "message": "missing API key",
-                      "code": "MISSING_API_KEY"
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#missing_api_key"
                     }
                   }
                 }
@@ -2377,7 +2741,26 @@
                     "value": {
                       "code": "ASSET_NOT_FOUND",
                       "message": "asset not found",
-                      "documentation": "https://docs.ondo.finance/api-reference/error-codes"
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#asset_not_found"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "The account has exceeded its rate limits. Please see the returned message and documentation for details.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "examples": {
+                  "error": {
+                    "value": {
+                      "code": "RATE_LIMITED",
+                      "message": "rate limit exceeded",
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#rate_limited"
                     }
                   }
                 }
@@ -2394,8 +2777,9 @@
                 "examples": {
                   "error": {
                     "value": {
+                      "code": "INTERNAL_ERROR",
                       "message": "An internal server error occurred. Please see the returned message and documentation for details.",
-                      "code": "INTERNAL_ERROR"
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#internal_error"
                     }
                   }
                 }
@@ -2439,8 +2823,28 @@
                 "examples": {
                   "error": {
                     "value": {
+                      "code": "MISSING_API_KEY",
                       "message": "missing API key",
-                      "code": "MISSING_API_KEY"
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#missing_api_key"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "The account has exceeded its rate limits. Please see the returned message and documentation for details.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "examples": {
+                  "error": {
+                    "value": {
+                      "code": "RATE_LIMITED",
+                      "message": "rate limit exceeded",
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#rate_limited"
                     }
                   }
                 }
@@ -2457,8 +2861,9 @@
                 "examples": {
                   "error": {
                     "value": {
+                      "code": "INTERNAL_ERROR",
                       "message": "An internal server error occurred. Please see the returned message and documentation for details.",
-                      "code": "INTERNAL_ERROR"
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#internal_error"
                     }
                   }
                 }
@@ -2533,8 +2938,28 @@
                 "examples": {
                   "error": {
                     "value": {
+                      "code": "MISSING_API_KEY",
                       "message": "missing API key",
-                      "code": "MISSING_API_KEY"
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#missing_api_key"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "The account has exceeded its rate limits. Please see the returned message and documentation for details.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "examples": {
+                  "error": {
+                    "value": {
+                      "code": "RATE_LIMITED",
+                      "message": "rate limit exceeded",
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#rate_limited"
                     }
                   }
                 }
@@ -2551,8 +2976,9 @@
                 "examples": {
                   "error": {
                     "value": {
+                      "code": "INTERNAL_ERROR",
                       "message": "An internal server error occurred. Please see the returned message and documentation for details.",
-                      "code": "INTERNAL_ERROR"
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#internal_error"
                     }
                   }
                 }
