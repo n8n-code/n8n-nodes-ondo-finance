@@ -1805,7 +1805,8 @@
                     "tags": {
                       "assetClass": "Equities",
                       "instrumentType": "Stock"
-                    }
+                    },
+                    "isin": "US0378331005"
                   },
                   {
                     "symbol": "ABNBon",
@@ -1827,7 +1828,8 @@
                     "tags": {
                       "assetClass": "Equities",
                       "instrumentType": "Stock"
-                    }
+                    },
+                    "isin": "US0090661010"
                   },
                   "..."
                 ]
@@ -4471,6 +4473,11 @@
             "type": "string",
             "nullable": true,
             "example": "38037"
+          },
+          "isin": {
+            "type": "string",
+            "description": "The 12-character International Securities Identification Number (ISIN) for the underlying instrument. Empty string if unknown or not applicable (e.g., non-equity assets).",
+            "example": "US0378331005"
           }
         },
         "required": [
