@@ -1806,7 +1806,8 @@
                       "assetClass": "Equities",
                       "instrumentType": "Stock"
                     },
-                    "isin": "US0378331005"
+                    "isin": "US0378331005",
+                    "logoURI": "https://assets.coingecko.com/coins/images/56760/large/aaplon.png"
                   },
                   {
                     "symbol": "ABNBon",
@@ -1829,7 +1830,8 @@
                       "assetClass": "Equities",
                       "instrumentType": "Stock"
                     },
-                    "isin": "US0090661010"
+                    "isin": "US0090661010",
+                    "logoURI": "https://assets.coingecko.com/coins/images/56774/large/abnbon.png"
                   },
                   "..."
                 ]
@@ -4478,6 +4480,11 @@
             "type": "string",
             "description": "The 12-character International Securities Identification Number (ISIN) for the underlying instrument. Empty string if unknown or not applicable (e.g., non-equity assets).",
             "example": "US0378331005"
+          },
+          "logoURI": {
+            "type": "string",
+            "description": "URL to the asset's logo image. Empty string if no logo is available for this asset.",
+            "example": "https://assets.coingecko.com/coins/images/56760/large/aaplon.png"
           }
         },
         "required": [
