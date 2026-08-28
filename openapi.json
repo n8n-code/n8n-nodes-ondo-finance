@@ -1788,6 +1788,8 @@
                   {
                     "symbol": "AAPLon",
                     "ticker": "AAPL",
+                    "underlyingName": "Apple",
+                    "displayName": "Apple (Ondo Tokenized)",
                     "coingeckoId": "apple-ondo-tokenized-stock",
                     "coinmarketCapId": "38037",
                     "addresses": [
@@ -1812,6 +1814,8 @@
                   {
                     "symbol": "ABNBon",
                     "ticker": "ABNB",
+                    "underlyingName": "Airbnb",
+                    "displayName": "Airbnb (Ondo Tokenized)",
                     "coingeckoId": "airbnb-ondo-tokenized-stock",
                     "coinmarketCapId": "38044",
                     "addresses": [
@@ -4394,6 +4398,16 @@
           "ticker": {
             "type": "string",
             "example": "AAPL"
+          },
+          "underlyingName": {
+            "type": "string",
+            "description": "Human-readable name of the underlying instrument. Empty string if no name is available for this asset.",
+            "example": "Apple"
+          },
+          "displayName": {
+            "type": "string",
+            "description": "Token name as shown in user interfaces. Empty string if no name is available for this asset.",
+            "example": "Apple (Ondo Tokenized)"
           },
           "coingeckoId": {
             "type": "string",
