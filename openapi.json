@@ -1028,6 +1028,9 @@
         ],
         "summary": "Get Market Data for All Supported Assets",
         "description": "This endpoint retrieves comprehensive market data for all supported assets. Each asset includes both primary market (on-chain token) and underlying market (off-chain stock) information.\n\nPrimary market data includes current price, 24-hour price changes, 24-hour historical chart data, and total token holders. Underlying market data provides stock fundamentals like company name, 52-week highs/lows, trading volume, shares outstanding, and market capitalization.\n\nThis endpoint is useful for dashboard overviews and market analysis across the entire asset portfolio.\n\nThe \"Tradable Sessions\" parameter indicates the tradability for the asset; for example, some assets are available in the regular and extended stock sessions, but not overnight. Learn more about sessions at [Get Current Market Status](https://docs.ondo.finance/api-reference/status/get-current-market-status).\n\nPrices are intended for display only. For real-time trading prices, use the [Soft Attestation Quote](https://docs.ondo.finance/api-reference/attestations/request-a-soft-attestation-quote) API. We do not recommend using the price feeds as an oracle for these assets. An official oracle is in development and will be documented when available. For questions, contact [support@ondo.finance](mailto:support@ondo.finance).\n\nFor caching details on this endpoint, please see: [Endpoint Caching](https://docs.ondo.finance/api-reference/endpoint-caching).\n",
+        "x-mint": {
+          "content": "<Note>Market data behaves differently by asset type. For standard tokens, `underlyingMarket` is populated and `constituentTokens` is an empty array. For Ondo Intelligent Portfolios (OIPs), `underlyingMarket` is `null` and `constituentTokens` lists the portfolio's constituent GM token symbols.</Note>"
+        },
         "operationId": "getAllMarkets",
         "responses": {
           "200": {
@@ -1192,6 +1195,9 @@
         ],
         "summary": "Get Market Data for an Asset",
         "description": "This endpoint retrieves comprehensive market data for a specific asset, containing both primary market (on-chain token) and underlying market (off-chain stock) information.\n\nPrimary market data includes current price, 24-hour price changes, 24-hour historical chart data, and total token holders. Underlying market data provides stock fundamentals like company name, 52-week highs/lows, trading volume, shares outstanding, and market capitalization.\n\nThis endpoint is useful for dashboard overviews and market analysis across the entire asset portfolio.\n\nThe \"Tradable Sessions\" parameter indicates the tradability for the asset; for example, some assets are available in the regular and extended stock sessions, but not overnight. Learn more about sessions at [Get Current Market Status](https://docs.ondo.finance/api-reference/status/get-current-market-status).\n\nPrices are intended for display only. For real-time trading prices, use the [Soft Attestation Quote](https://docs.ondo.finance/api-reference/attestations/request-a-soft-attestation-quote) API. We do not recommend using the price feeds as an oracle for these assets. An official oracle is in development and will be documented when available. For questions, contact [support@ondo.finance](mailto:support@ondo.finance).\n\nFor caching details on this endpoint, please see: [Endpoint Caching](https://docs.ondo.finance/api-reference/endpoint-caching).\n",
+        "x-mint": {
+          "content": "<Note>Market data behaves differently by asset type. For standard tokens, `underlyingMarket` is populated and `constituentTokens` is an empty array. For Ondo Intelligent Portfolios (OIPs), `underlyingMarket` is `null` and `constituentTokens` lists the portfolio's constituent GM token symbols.</Note>"
+        },
         "operationId": "getMarket",
         "parameters": [
           {
