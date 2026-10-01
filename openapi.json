@@ -1954,15 +1954,18 @@
                   "history": [
                     {
                       "sharesMultiplier": "0.481891643381832405",
-                      "changeTimestamp": 1762736520093
+                      "changeTimestamp": 1762736520093,
+                      "reason": "cash_dividend"
                     },
                     {
                       "sharesMultiplier": "0.481566453805576042",
-                      "changeTimestamp": 1754870400044
+                      "changeTimestamp": 1754870400044,
+                      "reason": "cash_dividend"
                     },
                     {
                       "sharesMultiplier": "0.481185641420460013",
-                      "changeTimestamp": 1753992000000
+                      "changeTimestamp": 1753992000000,
+                      "reason": "cash_dividend"
                     },
                     "..."
                   ],
@@ -3711,11 +3714,24 @@
             "type": "number",
             "description": "The Unix timestamp in milliseconds when this `sharesMultiplier` value was first set.",
             "example": 1746655938000
+          },
+          "reason": {
+            "type": "string",
+            "description": "The cause of this `sharesMultiplier` change. One of:\n- `cash_dividend`: A cash dividend was reinvested.\n- `stock_dividend`: A stock dividend was distributed.\n- `stock_split`: A stock split occurred.\n- `spinoff`: A spinoff occurred.\n- `other`: Any change not attributable to one of the corporate actions above, such as asset initialization or internal updates. The first data point in a requested `range` reports `other` if it does not correspond to an actual multiplier change within that range.",
+            "enum": [
+              "cash_dividend",
+              "stock_dividend",
+              "stock_split",
+              "spinoff",
+              "other"
+            ],
+            "example": "cash_dividend"
           }
         },
         "required": [
           "sharesMultiplier",
-          "changeTimestamp"
+          "changeTimestamp",
+          "reason"
         ]
       },
       "SharesMultiplierResponse": {
