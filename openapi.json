@@ -3081,7 +3081,7 @@
           },
           "tokenAmount": {
             "type": "string",
-            "description": "The number of tokens, represented as a string-encoded decimal with up to 18 digits after the decimal point.",
+            "description": "The number of tokens, represented as a string-encoded decimal with up to 18 digits after the decimal point. Must be greater than 0 and less than 1e20.",
             "example": "5.000000000000000000"
           },
           "duration": {
@@ -3118,7 +3118,7 @@
           },
           "notionalValue": {
             "type": "string",
-            "description": "Total value of assets, represented as a string-encoded decimal with up to 18 digits after the decimal point.",
+            "description": "Total value of assets, represented as a string-encoded decimal with up to 18 digits after the decimal point. Must be greater than 0 and less than 1e20.",
             "example": "500.000000000000000000"
           },
           "duration": {
@@ -3238,7 +3238,7 @@
           },
           "tokenAmount": {
             "type": "string",
-            "description": "The number of tokens, represented as a string-encoded decimal with up to 18 digits after the decimal point.",
+            "description": "The number of tokens, represented as a string-encoded decimal with up to 18 digits after the decimal point. Must be greater than 0 and less than 1e20.",
             "example": "5.000000000000000000"
           },
           "duration": {
@@ -3270,7 +3270,7 @@
           },
           "notionalValue": {
             "type": "string",
-            "description": "Total value of assets, represented as a string-encoded decimal with up to 18 digits after the decimal point.",
+            "description": "Total value of assets, represented as a string-encoded decimal with up to 18 digits after the decimal point. Must be greater than 0 and less than 1e20.",
             "example": "500.000000000000000000"
           },
           "duration": {

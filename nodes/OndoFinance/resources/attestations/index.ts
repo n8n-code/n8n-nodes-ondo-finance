@@ -168,7 +168,7 @@ export const attestationsDescription: INodeProperties[] = [
 			"name": "tokenAmount",
 			"type": "string",
 			"default": "5.000000000000000000",
-			"description": "The number of tokens, represented as a string-encoded decimal with up to 18 digits after the decimal point.",
+			"description": "The number of tokens, represented as a string-encoded decimal with up to 18 digits after the decimal point. Must be greater than 0 and less than 1e20.",
 			"routing": {
 				"send": {
 					"property": "tokenAmount",
@@ -400,7 +400,7 @@ export const attestationsDescription: INodeProperties[] = [
 			"name": "tokenAmount",
 			"type": "string",
 			"default": "5.000000000000000000",
-			"description": "The number of tokens, represented as a string-encoded decimal with up to 18 digits after the decimal point.",
+			"description": "The number of tokens, represented as a string-encoded decimal with up to 18 digits after the decimal point. Must be greater than 0 and less than 1e20.",
 			"routing": {
 				"send": {
 					"property": "tokenAmount",
