@@ -1,6 +1,7 @@
 import { NodeConnectionTypes, type INodeType, type INodeTypeDescription } from 'n8n-workflow';
 import { attestationsDescription } from './resources/attestations';
 import { assetsDescription } from './resources/assets';
+import { portfoliosDescription } from './resources/portfolios';
 import { tickersDescription } from './resources/tickers';
 import { chainsDescription } from './resources/chains';
 import { limitsDescription } from './resources/limits';
@@ -50,6 +51,11 @@ export class OndoFinance implements INodeType {
 					"description": "Get Asset Price Information"
 				},
 				{
+					"name": "Portfolios",
+					"value": "Portfolios",
+					"description": "Get Ondo Intelligent Portfolio Information"
+				},
+				{
 					"name": "Tickers",
 					"value": "Tickers",
 					"description": "Get Ticker Information"
@@ -74,6 +80,7 @@ export class OndoFinance implements INodeType {
 		},
 		...attestationsDescription,
 		...assetsDescription,
+		...portfoliosDescription,
 		...tickersDescription,
 		...chainsDescription,
 		...limitsDescription,

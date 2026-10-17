@@ -13,7 +13,7 @@ Every time you connect n8n to ondo-finance, you waste hours mapping endpoints, d
 
 **What if connecting n8n to ondo-finance took 5 minutes, not half a day?**
 
-This node gives you **6+ resources** out of the box: **Attestations**, **Assets**, **Tickers**, **Chains**, **Limits**, and 1 more: with full CRUD operations, typed parameters, and zero manual configuration.
+This node gives you **7+ resources** out of the box: **Attestations**, **Assets**, **Portfolios**, **Tickers**, **Chains**, and 2 more: with full CRUD operations, typed parameters, and zero manual configuration.
 
 ---
 
@@ -75,6 +75,14 @@ That's it. No configuration files. No code. It just works.
 - Get Contract Addresses for an Asset
 - Get Metadata for All Supported Assets
 - Get Shares Multiplier History for an Asset
+
+</details>
+
+<details>
+<summary><b>Portfolios</b> (2 operations)</summary>
+
+- Get All Portfolios
+- Get a Portfolio
 
 </details>
 

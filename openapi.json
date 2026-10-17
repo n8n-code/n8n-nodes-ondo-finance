@@ -21,6 +21,10 @@
       "description": "Get Asset Price Information"
     },
     {
+      "name": "Portfolios",
+      "description": "Get Ondo Intelligent Portfolio Information"
+    },
+    {
       "name": "Tickers",
       "description": "Get Ticker Information"
     },
@@ -2064,6 +2068,435 @@
                     "value": {
                       "code": "INTERNAL_ERROR",
                       "message": "An internal server error occurred. Please see the returned message and documentation for details.",
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#internal_error"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "apiKey": []
+          }
+        ]
+      }
+    },
+    "/v1/portfolios": {
+      "get": {
+        "tags": [
+          "Portfolios"
+        ],
+        "summary": "Get All Portfolios",
+        "operationId": "listPortfolios",
+        "description": "This endpoint returns all active Ondo Intelligent Portfolios. Each portfolio contains its product metadata, net assets, dividend yields, service fee, rebalance data, and constituents.\n\nThe response sorts the portfolios by symbol, and it sorts the constituents of each portfolio by symbol. Each entry in `portfolios` has the same fields as the response of [Get a Portfolio](https://docs.ondo.finance/api-reference/portfolios/get-a-portfolio).\n\nRates, weights, and yields are decimal fractions. For example, `\"0.0009\"` is 0.09% and `\"0.1143\"` is 11.43%. Dates are RFC 3339 timestamps in UTC.\n\nThis endpoint does not return prices. To get the price of a portfolio token, use [Get Current Price for an Asset](https://docs.ondo.finance/api-reference/assets/get-current-price-for-an-asset), [Get OHLC Data for an Asset](https://docs.ondo.finance/api-reference/assets/get-ohlc-open-high-low-close-data-for-an-asset), or [Get Market Data for an Asset](https://docs.ondo.finance/api-reference/assets/get-market-data-for-an-asset) with the portfolio symbol.\n\nFor caching details on this endpoint, please see: [Endpoint Caching](https://docs.ondo.finance/api-reference/endpoint-caching).\n",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListPortfoliosResponse"
+                },
+                "example": {
+                  "portfolios": [
+                    {
+                      "symbol": "MAG7Xon",
+                      "name": "Ondo Magnificent 7 and Crypto Portfolio",
+                      "description": "The Ondo Magnificent 7 and Crypto Portfolio implements an aggressive growth strategy by pairing the mega-cap technology stocks known as the \"Magnificent Seven\" with leading crypto assets. The portfolio holds an 80% equal-weight allocation to Apple, Microsoft, Alphabet, Amazon, NVIDIA, Meta, and Tesla, with the remaining 20% split between Bitcoin (15%) and Ethereum (5%).",
+                      "category": "thematic",
+                      "modelProvider": "ondo",
+                      "inceptionDate": "2026-08-12T16:35:00Z",
+                      "netAssetsUsd": "1885406.537181",
+                      "dividendYield": "0.00198929",
+                      "afterWithholdingDividendYield": "0.0013925",
+                      "fees": {
+                        "serviceFeeRateBeforeWaiver": "0.0009",
+                        "waiverFraction": "1",
+                        "serviceFeeRateAfterWaiver": "0"
+                      },
+                      "rebalance": {
+                        "frequency": "Quarterly",
+                        "reconstitutionType": "Fixed",
+                        "lastRebalanceDate": "2026-08-12T16:36:00Z"
+                      },
+                      "constituentCount": 9,
+                      "constituents": [
+                        {
+                          "symbol": "AAPLon",
+                          "name": "Apple",
+                          "quantity": "917.20457",
+                          "targetWeight": "0.1143",
+                          "currentWeight": "0.12556912",
+                          "assetClass": "Equities",
+                          "instrumentType": "Stock",
+                          "sectorIndustry": [
+                            "Technology"
+                          ],
+                          "addresses": [
+                            {
+                              "networkChainId": "bsc-56",
+                              "address": "0x390a684ef9cade28a7ad0dfa61ab1eb3842618c4",
+                              "decimals": 18
+                            },
+                            {
+                              "networkChainId": "ethereum-1",
+                              "address": "0x14c3abf95cb9c93a8b82c1cdcb76d72cb87b2d4c",
+                              "decimals": 18
+                            },
+                            {
+                              "networkChainId": "solana-900",
+                              "address": "123mYEnRLM2LLYsJW3K6oyYh8uP1fngj732iG638ondo",
+                              "decimals": 9
+                            }
+                          ]
+                        },
+                        {
+                          "symbol": "AMZNon",
+                          "name": "Amazon",
+                          "quantity": "905.66388",
+                          "targetWeight": "0.1143",
+                          "currentWeight": "0.10877632",
+                          "assetClass": "Equities",
+                          "instrumentType": "Stock",
+                          "sectorIndustry": [
+                            "Consumer Discretionary"
+                          ],
+                          "addresses": [
+                            {
+                              "networkChainId": "bsc-56",
+                              "address": "0x4553cfe1c09f37f38b12dc509f676964e392f8fc",
+                              "decimals": 18
+                            },
+                            {
+                              "networkChainId": "ethereum-1",
+                              "address": "0xbb8774fb97436d23d74c1b882e8e9a69322cfd31",
+                              "decimals": 18
+                            },
+                            {
+                              "networkChainId": "solana-900",
+                              "address": "14Tqdo8V1FhzKsE3W2pFsZCzYPQxxupXRcqw9jv6ondo",
+                              "decimals": 9
+                            }
+                          ]
+                        },
+                        "..."
+                      ],
+                      "timestamp": 1791469800123
+                    },
+                    "..."
+                  ]
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "examples": {
+                  "error": {
+                    "value": {
+                      "code": "MISSING_API_KEY",
+                      "message": "missing API key",
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#missing_api_key"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "The account has exceeded its rate limits. Please see the returned message and documentation for details.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "examples": {
+                  "error": {
+                    "value": {
+                      "code": "RATE_LIMITED",
+                      "message": "rate limit exceeded",
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#rate_limited"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An internal server error occurred. Please see the returned message and documentation for details.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "examples": {
+                  "error": {
+                    "value": {
+                      "code": "INTERNAL_ERROR",
+                      "message": "An internal server error occurred. Please see the returned message and documentation for details.",
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#internal_error"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Portfolio data is temporarily unavailable. Retry the request after a short time.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "examples": {
+                  "error": {
+                    "value": {
+                      "code": "INTERNAL_ERROR",
+                      "message": "portfolio data unavailable",
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#internal_error"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "apiKey": []
+          }
+        ]
+      }
+    },
+    "/v1/portfolios/{symbol}": {
+      "get": {
+        "tags": [
+          "Portfolios"
+        ],
+        "summary": "Get a Portfolio",
+        "operationId": "getPortfolio",
+        "description": "This endpoint returns one Ondo Intelligent Portfolio. The response contains the product metadata, net assets, dividend yields, service fee, rebalance data, and constituents of the portfolio.\n\nThe response has the same fields as each entry of [Get All Portfolios](https://docs.ondo.finance/api-reference/portfolios/get-all-portfolios). The response sorts the constituents by symbol.\n\nIf the symbol is not an active portfolio, the endpoint returns the `RESOURCE_NOT_FOUND` error code with status `404`. Ondo Stocks symbols, such as `AAPLon`, also return this error.\n\nRates, weights, and yields are decimal fractions. For example, `\"0.0009\"` is 0.09% and `\"0.1143\"` is 11.43%. Dates are RFC 3339 timestamps in UTC.\n\nThis endpoint does not return prices. To get the price of a portfolio token, use [Get Current Price for an Asset](https://docs.ondo.finance/api-reference/assets/get-current-price-for-an-asset), [Get OHLC Data for an Asset](https://docs.ondo.finance/api-reference/assets/get-ohlc-open-high-low-close-data-for-an-asset), or [Get Market Data for an Asset](https://docs.ondo.finance/api-reference/assets/get-market-data-for-an-asset) with the portfolio symbol.\n\nFor caching details on this endpoint, please see: [Endpoint Caching](https://docs.ondo.finance/api-reference/endpoint-caching).\n",
+        "parameters": [
+          {
+            "name": "symbol",
+            "in": "path",
+            "description": "The portfolio token symbol",
+            "required": true,
+            "example": "MAG7Xon",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Portfolio"
+                },
+                "example": {
+                  "symbol": "MAG7Xon",
+                  "name": "Ondo Magnificent 7 and Crypto Portfolio",
+                  "description": "The Ondo Magnificent 7 and Crypto Portfolio implements an aggressive growth strategy by pairing the mega-cap technology stocks known as the \"Magnificent Seven\" with leading crypto assets. The portfolio holds an 80% equal-weight allocation to Apple, Microsoft, Alphabet, Amazon, NVIDIA, Meta, and Tesla, with the remaining 20% split between Bitcoin (15%) and Ethereum (5%).",
+                  "category": "thematic",
+                  "modelProvider": "ondo",
+                  "inceptionDate": "2026-08-12T16:35:00Z",
+                  "netAssetsUsd": "1885406.537181",
+                  "dividendYield": "0.00198929",
+                  "afterWithholdingDividendYield": "0.0013925",
+                  "fees": {
+                    "serviceFeeRateBeforeWaiver": "0.0009",
+                    "waiverFraction": "1",
+                    "serviceFeeRateAfterWaiver": "0"
+                  },
+                  "rebalance": {
+                    "frequency": "Quarterly",
+                    "reconstitutionType": "Fixed",
+                    "lastRebalanceDate": "2026-08-12T16:36:00Z"
+                  },
+                  "constituentCount": 9,
+                  "constituents": [
+                    {
+                      "symbol": "AAPLon",
+                      "name": "Apple",
+                      "quantity": "917.20457",
+                      "targetWeight": "0.1143",
+                      "currentWeight": "0.12556912",
+                      "assetClass": "Equities",
+                      "instrumentType": "Stock",
+                      "sectorIndustry": [
+                        "Technology"
+                      ],
+                      "addresses": [
+                        {
+                          "networkChainId": "bsc-56",
+                          "address": "0x390a684ef9cade28a7ad0dfa61ab1eb3842618c4",
+                          "decimals": 18
+                        },
+                        {
+                          "networkChainId": "ethereum-1",
+                          "address": "0x14c3abf95cb9c93a8b82c1cdcb76d72cb87b2d4c",
+                          "decimals": 18
+                        },
+                        {
+                          "networkChainId": "solana-900",
+                          "address": "123mYEnRLM2LLYsJW3K6oyYh8uP1fngj732iG638ondo",
+                          "decimals": 9
+                        }
+                      ]
+                    },
+                    {
+                      "symbol": "AMZNon",
+                      "name": "Amazon",
+                      "quantity": "905.66388",
+                      "targetWeight": "0.1143",
+                      "currentWeight": "0.10877632",
+                      "assetClass": "Equities",
+                      "instrumentType": "Stock",
+                      "sectorIndustry": [
+                        "Consumer Discretionary"
+                      ],
+                      "addresses": [
+                        {
+                          "networkChainId": "bsc-56",
+                          "address": "0x4553cfe1c09f37f38b12dc509f676964e392f8fc",
+                          "decimals": 18
+                        },
+                        {
+                          "networkChainId": "ethereum-1",
+                          "address": "0xbb8774fb97436d23d74c1b882e8e9a69322cfd31",
+                          "decimals": 18
+                        },
+                        {
+                          "networkChainId": "solana-900",
+                          "address": "14Tqdo8V1FhzKsE3W2pFsZCzYPQxxupXRcqw9jv6ondo",
+                          "decimals": 9
+                        }
+                      ]
+                    },
+                    "..."
+                  ],
+                  "timestamp": 1791469800123
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "One of the request parameters is invalid. Please see the returned message and documentation for details.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "examples": {
+                  "error": {
+                    "value": {
+                      "code": "INVALID_SYMBOL",
+                      "message": "invalid symbol; must be at least 3 characters long and end with 'on'",
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#invalid_symbol"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "examples": {
+                  "error": {
+                    "value": {
+                      "code": "MISSING_API_KEY",
+                      "message": "missing API key",
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#missing_api_key"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The provided symbol is not an active portfolio. Please see the returned message and documentation for details.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "examples": {
+                  "error": {
+                    "value": {
+                      "code": "RESOURCE_NOT_FOUND",
+                      "message": "portfolio not found",
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#resource_not_found"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "The account has exceeded its rate limits. Please see the returned message and documentation for details.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "examples": {
+                  "error": {
+                    "value": {
+                      "code": "RATE_LIMITED",
+                      "message": "rate limit exceeded",
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#rate_limited"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An internal server error occurred. Please see the returned message and documentation for details.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "examples": {
+                  "error": {
+                    "value": {
+                      "code": "INTERNAL_ERROR",
+                      "message": "An internal server error occurred. Please see the returned message and documentation for details.",
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#internal_error"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Portfolio data is temporarily unavailable. Retry the request after a short time.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "examples": {
+                  "error": {
+                    "value": {
+                      "code": "INTERNAL_ERROR",
+                      "message": "portfolio data unavailable",
                       "documentation": "https://docs.ondo.finance/api-reference/error-codes#internal_error"
                     }
                   }
@@ -4533,6 +4966,224 @@
           "symbol",
           "ticker",
           "tags"
+        ]
+      },
+      "Portfolio": {
+        "type": "object",
+        "properties": {
+          "symbol": {
+            "type": "string",
+            "description": "The portfolio token symbol.",
+            "example": "MAG7Xon"
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the portfolio.",
+            "example": "Ondo Magnificent 7 and Crypto Portfolio"
+          },
+          "description": {
+            "type": "string",
+            "description": "A description of the portfolio strategy. The response omits this field if no description is available.",
+            "example": "The Ondo Magnificent 7 and Crypto Portfolio implements an aggressive growth strategy ..."
+          },
+          "category": {
+            "type": "string",
+            "description": "The category of the portfolio, for example `thematic`, `income`, or `allocation`. The value is free text, not a fixed list. The response omits this field if no category is available.",
+            "example": "thematic"
+          },
+          "modelProvider": {
+            "type": "string",
+            "description": "The [model provider](https://docs.ondo.finance/intelligent-portfolios/model-providers) that develops the portfolio strategy, for example `ondo` or `blackrock`. The value is free text, not a fixed list. The response omits this field if no model provider is available.",
+            "example": "ondo"
+          },
+          "inceptionDate": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The inception date of the portfolio, as an RFC 3339 timestamp in UTC. The response omits this field if no inception date is available.",
+            "example": "2026-08-12T16:35:00Z"
+          },
+          "netAssetsUsd": {
+            "type": "string",
+            "description": "The USD value of the constituents that the portfolio holds, represented as a string-encoded decimal with up to 6 digits after the decimal point. The value is the sum of each constituent `quantity` multiplied by its token price. It does not include cash from mints and redemptions that are not yet settled. For this reason, it can be slightly different from the token price multiplied by the total supply. If the portfolio has no supply, the value is `\"0\"`.",
+            "example": "1885406.537181"
+          },
+          "dividendYield": {
+            "type": "string",
+            "description": "The dividend yield of the portfolio, represented as a string-encoded decimal with up to 8 digits after the decimal point. (\"0.05\" is the equivalent of 5%) The value is the average of the constituent dividend yields, weighted by `currentWeight`. The dividend yield of a constituent is the sum of its cash dividends paid in the last 365 days, divided by the current stock price. A constituent without dividends adds zero.",
+            "example": "0.00198929"
+          },
+          "afterWithholdingDividendYield": {
+            "type": "string",
+            "description": "The dividend yield of the portfolio after estimated withholding tax, represented as a string-encoded decimal with up to 8 digits after the decimal point. This value uses the same calculation as `dividendYield`, but it first subtracts the withholding tax from each dividend. For more information, see [Fees & Taxes](https://docs.ondo.finance/intelligent-portfolios/fees-taxes).",
+            "example": "0.0013925"
+          },
+          "fees": {
+            "type": "object",
+            "nullable": true,
+            "description": "The annual service fee of the portfolio. The value is `null` if no fee data is available. For more information, see [Fees & Taxes](https://docs.ondo.finance/intelligent-portfolios/fees-taxes).",
+            "properties": {
+              "serviceFeeRateBeforeWaiver": {
+                "type": "string",
+                "description": "The annual service fee rate before the fee waiver, represented as a string-encoded decimal with up to 8 digits after the decimal point. (\"0.0009\" is the equivalent of 0.09%)",
+                "example": "0.0009"
+              },
+              "waiverFraction": {
+                "type": "string",
+                "description": "The fee waiver as a fraction of the service fee, from 0 to 1, represented as a string-encoded decimal with up to 8 digits after the decimal point. A value of `\"1\"` waives the full fee. A value of `\"0\"` waives no fee.",
+                "example": "1"
+              },
+              "serviceFeeRateAfterWaiver": {
+                "type": "string",
+                "description": "The annual service fee rate after the fee waiver, represented as a string-encoded decimal with up to 8 digits after the decimal point. The value is `serviceFeeRateBeforeWaiver` multiplied by (1 - `waiverFraction`).",
+                "example": "0"
+              }
+            },
+            "required": [
+              "serviceFeeRateBeforeWaiver",
+              "waiverFraction",
+              "serviceFeeRateAfterWaiver"
+            ]
+          },
+          "rebalance": {
+            "type": "object",
+            "nullable": true,
+            "description": "The rebalance data of the portfolio. The value is `null` if no rebalance data is available. For more information, see [Rebalancing & Reconstitution](https://docs.ondo.finance/intelligent-portfolios/rebalancing-reconstitution).",
+            "properties": {
+              "frequency": {
+                "type": "string",
+                "description": "The rebalance frequency of the portfolio, for example `Quarterly`. The value is free text, not a fixed list. Empty string if no frequency is available.",
+                "example": "Quarterly"
+              },
+              "reconstitutionType": {
+                "type": "string",
+                "description": "The reconstitution approach of the portfolio, for example `Fixed`. The value is free text, not a fixed list. Empty string if no reconstitution type is available.",
+                "example": "Fixed"
+              },
+              "lastRebalanceDate": {
+                "type": "string",
+                "format": "date-time",
+                "description": "The date of the most recent rebalance, as an RFC 3339 timestamp in UTC. The response omits this field if no rebalance date is available.",
+                "example": "2026-08-12T16:36:00Z"
+              }
+            },
+            "required": [
+              "frequency",
+              "reconstitutionType"
+            ]
+          },
+          "constituentCount": {
+            "type": "integer",
+            "format": "int32",
+            "description": "The number of constituents in `constituents`.",
+            "example": 9
+          },
+          "constituents": {
+            "type": "array",
+            "description": "The constituents of the portfolio, sorted by symbol.",
+            "items": {
+              "$ref": "#/components/schemas/PortfolioConstituent"
+            }
+          },
+          "timestamp": {
+            "type": "number",
+            "description": "The Unix timestamp in milliseconds when the API last refreshed the data of this portfolio. Each portfolio has its own timestamp.",
+            "example": 1791469800123
+          }
+        },
+        "required": [
+          "symbol",
+          "name",
+          "netAssetsUsd",
+          "dividendYield",
+          "afterWithholdingDividendYield",
+          "fees",
+          "rebalance",
+          "constituentCount",
+          "constituents",
+          "timestamp"
+        ]
+      },
+      "PortfolioConstituent": {
+        "type": "object",
+        "properties": {
+          "symbol": {
+            "type": "string",
+            "description": "The GM token symbol of the constituent.",
+            "example": "AAPLon"
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the underlying asset. Empty string if no name is available.",
+            "example": "Apple"
+          },
+          "quantity": {
+            "type": "string",
+            "description": "The number of constituent tokens that the portfolio holds on all chains, represented as a string-encoded decimal with up to 18 digits after the decimal point.",
+            "example": "917.20457"
+          },
+          "targetWeight": {
+            "type": "string",
+            "description": "The target weight of the constituent in the portfolio model, represented as a string-encoded decimal with up to 8 digits after the decimal point. (\"0.1143\" is the equivalent of 11.43%)",
+            "example": "0.1143"
+          },
+          "currentWeight": {
+            "type": "string",
+            "description": "The current weight of the constituent, represented as a string-encoded decimal with up to 8 digits after the decimal point. The value is the constituent `quantity` multiplied by its token price, divided by `netAssetsUsd`. The sum of the current weights of a portfolio is 1, before rounding. If the portfolio has no supply, the value is equal to `targetWeight`.",
+            "example": "0.12556912"
+          },
+          "assetClass": {
+            "type": "string",
+            "description": "High-level category of the asset. Empty string if not available.",
+            "example": "Equities"
+          },
+          "instrumentType": {
+            "type": "string",
+            "description": "Instrument type within the asset class. Empty string if not available.",
+            "example": "Stock"
+          },
+          "sectorIndustry": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Sector and industry classifications for the asset. Empty array if not available.",
+            "example": [
+              "Technology"
+            ]
+          },
+          "addresses": {
+            "type": "array",
+            "description": "The contract addresses of the constituent token, sorted by `networkChainId`.",
+            "items": {
+              "$ref": "#/components/schemas/AssetAddress"
+            }
+          }
+        },
+        "required": [
+          "symbol",
+          "name",
+          "quantity",
+          "targetWeight",
+          "currentWeight",
+          "assetClass",
+          "instrumentType",
+          "sectorIndustry",
+          "addresses"
+        ]
+      },
+      "ListPortfoliosResponse": {
+        "type": "object",
+        "properties": {
+          "portfolios": {
+            "type": "array",
+            "description": "The active portfolios, sorted by symbol.",
+            "items": {
+              "$ref": "#/components/schemas/Portfolio"
+            }
+          }
+        },
+        "required": [
+          "portfolios"
         ]
       },
       "ErrorResponse": {
