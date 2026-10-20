@@ -4152,8 +4152,9 @@
           },
           "reason": {
             "type": "string",
-            "description": "The cause of this `sharesMultiplier` change. One of:\n- `cash_dividend`: A cash dividend was reinvested.\n- `stock_dividend`: A stock dividend was distributed.\n- `stock_split`: A stock split occurred.\n- `spinoff`: A spinoff occurred.\n- `other`: Any change not attributable to one of the corporate actions above, such as asset initialization or internal updates. The first data point in a requested `range` reports `other` if it does not correspond to an actual multiplier change within that range.",
+            "description": "The cause of this `sharesMultiplier` change. One of:\n- `initialization`: The first entry of the asset's full shares multiplier history. This entry always has a `sharesMultiplier` of 1. It only appears when the requested `range` reaches back to the start of the history.\n- `cash_dividend`: A cash dividend was reinvested.\n- `stock_dividend`: A stock dividend was distributed.\n- `stock_split`: A stock split occurred.\n- `spinoff`: A spinoff occurred.\n- `other`: Any change not attributable to one of the corporate actions above, such as internal updates. If the requested `range` starts after the beginning of the asset's history, the first data point reports `other` unless it corresponds to an actual multiplier change within that range.",
             "enum": [
+              "initialization",
               "cash_dividend",
               "stock_dividend",
               "stock_split",
