@@ -2090,7 +2090,7 @@
         ],
         "summary": "Get All Portfolios",
         "operationId": "listPortfolios",
-        "description": "This endpoint returns all active Ondo Intelligent Portfolios. Each portfolio contains its product metadata, net assets, dividend yields, service fee, rebalance data, and constituents.\n\nThe response sorts the portfolios by symbol, and it sorts the constituents of each portfolio by symbol. Each entry in `portfolios` has the same fields as the response of [Get a Portfolio](https://docs.ondo.finance/api-reference/portfolios/get-a-portfolio).\n\nRates, weights, and yields are decimal fractions. For example, `\"0.0009\"` is 0.09% and `\"0.1143\"` is 11.43%. Dates are RFC 3339 timestamps in UTC.\n\nThis endpoint does not return prices. To get the price of a portfolio token, use [Get Current Price for an Asset](https://docs.ondo.finance/api-reference/assets/get-current-price-for-an-asset), [Get OHLC Data for an Asset](https://docs.ondo.finance/api-reference/assets/get-ohlc-open-high-low-close-data-for-an-asset), or [Get Market Data for an Asset](https://docs.ondo.finance/api-reference/assets/get-market-data-for-an-asset) with the portfolio symbol.\n\nFor caching details on this endpoint, please see: [Endpoint Caching](https://docs.ondo.finance/api-reference/endpoint-caching).\n",
+        "description": "This endpoint returns all active Ondo Intelligent Portfolios. Each portfolio contains its product metadata, net assets, dividend yields, service fee, rebalance data, and constituents.\n\nThe response sorts the portfolios by symbol, and it sorts the constituents of each portfolio by symbol. Each entry in the array has the same fields as the response of [Get a Portfolio](https://docs.ondo.finance/api-reference/portfolios/get-a-portfolio).\n\nRates, weights, and yields are decimal fractions. For example, `\"0.0009\"` is 0.09% and `\"0.1143\"` is 11.43%. Dates are RFC 3339 timestamps in UTC.\n\nThis endpoint does not return prices. To get the price of a portfolio token, use [Get Current Price for an Asset](https://docs.ondo.finance/api-reference/assets/get-current-price-for-an-asset), [Get OHLC Data for an Asset](https://docs.ondo.finance/api-reference/assets/get-ohlc-open-high-low-close-data-for-an-asset), or [Get Market Data for an Asset](https://docs.ondo.finance/api-reference/assets/get-market-data-for-an-asset) with the portfolio symbol.\n\nFor caching details on this endpoint, please see: [Endpoint Caching](https://docs.ondo.finance/api-reference/endpoint-caching).\n",
         "responses": {
           "200": {
             "description": "OK",
@@ -2099,95 +2099,93 @@
                 "schema": {
                   "$ref": "#/components/schemas/ListPortfoliosResponse"
                 },
-                "example": {
-                  "portfolios": [
-                    {
-                      "symbol": "MAG7Xon",
-                      "name": "Ondo Magnificent 7 and Crypto Portfolio",
-                      "description": "The Ondo Magnificent 7 and Crypto Portfolio implements an aggressive growth strategy by pairing the mega-cap technology stocks known as the \"Magnificent Seven\" with leading crypto assets. The portfolio holds an 80% equal-weight allocation to Apple, Microsoft, Alphabet, Amazon, NVIDIA, Meta, and Tesla, with the remaining 20% split between Bitcoin (15%) and Ethereum (5%).",
-                      "category": "thematic",
-                      "modelProvider": "ondo",
-                      "inceptionDate": "2026-08-12T16:35:00Z",
-                      "netAssetsUsd": "1885406.537181",
-                      "dividendYield": "0.00198929",
-                      "afterWithholdingDividendYield": "0.0013925",
-                      "fees": {
-                        "serviceFeeRateBeforeWaiver": "0.0009",
-                        "waiverFraction": "1",
-                        "serviceFeeRateAfterWaiver": "0"
-                      },
-                      "rebalance": {
-                        "frequency": "Quarterly",
-                        "reconstitutionType": "Fixed",
-                        "lastRebalanceDate": "2026-08-12T16:36:00Z"
-                      },
-                      "constituentCount": 9,
-                      "constituents": [
-                        {
-                          "symbol": "AAPLon",
-                          "name": "Apple",
-                          "quantity": "917.20457",
-                          "targetWeight": "0.1143",
-                          "currentWeight": "0.12556912",
-                          "assetClass": "Equities",
-                          "instrumentType": "Stock",
-                          "sectorIndustry": [
-                            "Technology"
-                          ],
-                          "addresses": [
-                            {
-                              "networkChainId": "bsc-56",
-                              "address": "0x390a684ef9cade28a7ad0dfa61ab1eb3842618c4",
-                              "decimals": 18
-                            },
-                            {
-                              "networkChainId": "ethereum-1",
-                              "address": "0x14c3abf95cb9c93a8b82c1cdcb76d72cb87b2d4c",
-                              "decimals": 18
-                            },
-                            {
-                              "networkChainId": "solana-900",
-                              "address": "123mYEnRLM2LLYsJW3K6oyYh8uP1fngj732iG638ondo",
-                              "decimals": 9
-                            }
-                          ]
-                        },
-                        {
-                          "symbol": "AMZNon",
-                          "name": "Amazon",
-                          "quantity": "905.66388",
-                          "targetWeight": "0.1143",
-                          "currentWeight": "0.10877632",
-                          "assetClass": "Equities",
-                          "instrumentType": "Stock",
-                          "sectorIndustry": [
-                            "Consumer Discretionary"
-                          ],
-                          "addresses": [
-                            {
-                              "networkChainId": "bsc-56",
-                              "address": "0x4553cfe1c09f37f38b12dc509f676964e392f8fc",
-                              "decimals": 18
-                            },
-                            {
-                              "networkChainId": "ethereum-1",
-                              "address": "0xbb8774fb97436d23d74c1b882e8e9a69322cfd31",
-                              "decimals": 18
-                            },
-                            {
-                              "networkChainId": "solana-900",
-                              "address": "14Tqdo8V1FhzKsE3W2pFsZCzYPQxxupXRcqw9jv6ondo",
-                              "decimals": 9
-                            }
-                          ]
-                        },
-                        "..."
-                      ],
-                      "timestamp": 1791469800123
+                "example": [
+                  {
+                    "symbol": "MAG7Xon",
+                    "name": "Ondo Magnificent 7 and Crypto Portfolio",
+                    "description": "The Ondo Magnificent 7 and Crypto Portfolio implements an aggressive growth strategy by pairing the mega-cap technology stocks known as the \"Magnificent Seven\" with leading crypto assets. The portfolio holds an 80% equal-weight allocation to Apple, Microsoft, Alphabet, Amazon, NVIDIA, Meta, and Tesla, with the remaining 20% split between Bitcoin (15%) and Ethereum (5%).",
+                    "category": "thematic",
+                    "modelProvider": "ondo",
+                    "inceptionDate": "2026-08-12T16:35:00Z",
+                    "netAssetsUsd": "1885406.537181",
+                    "dividendYield": "0.00198929",
+                    "afterWithholdingDividendYield": "0.0013925",
+                    "fees": {
+                      "serviceFeeRateBeforeWaiver": "0.0009",
+                      "waiverFraction": "1",
+                      "serviceFeeRateAfterWaiver": "0"
                     },
-                    "..."
-                  ]
-                }
+                    "rebalance": {
+                      "frequency": "Quarterly",
+                      "reconstitutionType": "Fixed",
+                      "lastRebalanceDate": "2026-08-12T16:36:00Z"
+                    },
+                    "constituentCount": 9,
+                    "constituents": [
+                      {
+                        "symbol": "AAPLon",
+                        "name": "Apple",
+                        "quantity": "917.20457",
+                        "targetWeight": "0.1143",
+                        "currentWeight": "0.12556912",
+                        "assetClass": "Equities",
+                        "instrumentType": "Stock",
+                        "sectorIndustry": [
+                          "Technology"
+                        ],
+                        "addresses": [
+                          {
+                            "networkChainId": "bsc-56",
+                            "address": "0x390a684ef9cade28a7ad0dfa61ab1eb3842618c4",
+                            "decimals": 18
+                          },
+                          {
+                            "networkChainId": "ethereum-1",
+                            "address": "0x14c3abf95cb9c93a8b82c1cdcb76d72cb87b2d4c",
+                            "decimals": 18
+                          },
+                          {
+                            "networkChainId": "solana-900",
+                            "address": "123mYEnRLM2LLYsJW3K6oyYh8uP1fngj732iG638ondo",
+                            "decimals": 9
+                          }
+                        ]
+                      },
+                      {
+                        "symbol": "AMZNon",
+                        "name": "Amazon",
+                        "quantity": "905.66388",
+                        "targetWeight": "0.1143",
+                        "currentWeight": "0.10877632",
+                        "assetClass": "Equities",
+                        "instrumentType": "Stock",
+                        "sectorIndustry": [
+                          "Consumer Discretionary"
+                        ],
+                        "addresses": [
+                          {
+                            "networkChainId": "bsc-56",
+                            "address": "0x4553cfe1c09f37f38b12dc509f676964e392f8fc",
+                            "decimals": 18
+                          },
+                          {
+                            "networkChainId": "ethereum-1",
+                            "address": "0xbb8774fb97436d23d74c1b882e8e9a69322cfd31",
+                            "decimals": 18
+                          },
+                          {
+                            "networkChainId": "solana-900",
+                            "address": "14Tqdo8V1FhzKsE3W2pFsZCzYPQxxupXRcqw9jv6ondo",
+                            "decimals": 9
+                          }
+                        ]
+                      },
+                      "..."
+                    ],
+                    "timestamp": 1791469800123
+                  },
+                  "..."
+                ]
               }
             }
           },
@@ -5173,19 +5171,11 @@
         ]
       },
       "ListPortfoliosResponse": {
-        "type": "object",
-        "properties": {
-          "portfolios": {
-            "type": "array",
-            "description": "The active portfolios, sorted by symbol.",
-            "items": {
-              "$ref": "#/components/schemas/Portfolio"
-            }
-          }
-        },
-        "required": [
-          "portfolios"
-        ]
+        "type": "array",
+        "description": "The active portfolios, sorted by symbol.",
+        "items": {
+          "$ref": "#/components/schemas/Portfolio"
+        }
       },
       "ErrorResponse": {
         "type": "object",
