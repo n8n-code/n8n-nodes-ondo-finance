@@ -5,3 +5,4 @@ export { tickersDescription } from './tickers';
 export { chainsDescription } from './chains';
 export { limitsDescription } from './limits';
 export { statusDescription } from './status';
+export { itnDescription } from './itn';

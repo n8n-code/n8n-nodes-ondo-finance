@@ -6,6 +6,7 @@ import { tickersDescription } from './resources/tickers';
 import { chainsDescription } from './resources/chains';
 import { limitsDescription } from './resources/limits';
 import { statusDescription } from './resources/status';
+import { itnDescription } from './resources/itn';
 
 export class OndoFinance implements INodeType {
         description: INodeTypeDescription = {
@@ -74,6 +75,11 @@ export class OndoFinance implements INodeType {
 					"name": "Status",
 					"value": "Status",
 					"description": "Get Market and Trading Statuses"
+				},
+				{
+					"name": "ITN",
+					"value": "ITN",
+					"description": "Get Alpaca ITN Assets, Statuses, and Limits"
 				}
 			],
 			"default": ""
@@ -84,7 +90,8 @@ export class OndoFinance implements INodeType {
 		...tickersDescription,
 		...chainsDescription,
 		...limitsDescription,
-		...statusDescription
+		...statusDescription,
+		...itnDescription
                 ],
         };
 }

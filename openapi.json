@@ -39,6 +39,10 @@
     {
       "name": "Status",
       "description": "Get Market and Trading Statuses"
+    },
+    {
+      "name": "ITN",
+      "description": "Get Alpaca ITN Assets, Statuses, and Limits"
     }
   ],
   "paths": {
@@ -3442,6 +3446,446 @@
           }
         ]
       }
+    },
+    "/v1/itn/assets": {
+      "get": {
+        "tags": [
+          "ITN"
+        ],
+        "summary": "List ITN Assets",
+        "description": "This endpoint lists every asset available through Alpaca's Instant Tokenization Network (ITN) and the networks each asset is deployed on. For each network, it returns the token contract address, the token decimals, and the ITN mint and redeem fees.\n\nFor current mint and redeem availability, see [Get ITN Status](https://docs.ondo.finance/api-reference/itn/get-itn-status).\n\nFor caching details on this endpoint, please see: [Endpoint Caching](https://docs.ondo.finance/api-reference/endpoint-caching).\n\nFor the complete ITN workflow, see [ITN Integration](https://docs.ondo.finance/api-reference/itn-integration).\n",
+        "operationId": "listITNAssets",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListITNAssetsResponse"
+                },
+                "example": [
+                  {
+                    "symbol": "AAPLon",
+                    "ticker": "AAPL",
+                    "networks": [
+                      {
+                        "networkChainId": "bsc-56",
+                        "evmChainId": 56,
+                        "alpacaNetwork": "binance",
+                        "tokenAddress": "0x390a684ef9cade28a7ad0dfa61ab1eb3842618c4",
+                        "decimals": 18,
+                        "mintFeeBps": 0,
+                        "redeemFeeBps": 5
+                      },
+                      {
+                        "networkChainId": "ethereum-1",
+                        "evmChainId": 1,
+                        "alpacaNetwork": "ethereum",
+                        "tokenAddress": "0x14c3abf95cb9c93a8b82c1cdcb76d72cb87b2d4c",
+                        "decimals": 18,
+                        "mintFeeBps": 0,
+                        "redeemFeeBps": 5
+                      }
+                    ]
+                  },
+                  "..."
+                ]
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "examples": {
+                  "error": {
+                    "value": {
+                      "code": "MISSING_API_KEY",
+                      "message": "missing API key",
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#missing_api_key"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "The account has exceeded its rate limits. Please see the returned message and documentation for details.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "examples": {
+                  "error": {
+                    "value": {
+                      "code": "RATE_LIMITED",
+                      "message": "rate limit exceeded",
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#rate_limited"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An internal server error occurred. Please see the returned message and documentation for details.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "examples": {
+                  "error": {
+                    "value": {
+                      "code": "INTERNAL_ERROR",
+                      "message": "An internal server error occurred. Please see the returned message and documentation for details.",
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#internal_error"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "apiKey": []
+          }
+        ]
+      }
+    },
+    "/v1/itn/status": {
+      "get": {
+        "tags": [
+          "ITN"
+        ],
+        "summary": "Get ITN Status",
+        "description": "This endpoint reports whether ITN minting and redeeming are open, both globally and for each asset on each network.\n\n**Global Status**\n\nThe top-level `mint` and `redeem` objects report whether each side is open globally. When a side is closed, every asset on every network is also unavailable for that side.\n\n**Per-Network Availability**\n\nEach entry in `assets[].networks` reports whether minting and redeeming are enabled for that asset on that network.\n\n**ITN Status Reason Codes**\n\nWhen a side is closed or unavailable, `reason` is set. Otherwise, `reason` is `null`.\n\n`reason.code` is one of:\n- `ITN_UNAVAILABLE`: ITN is temporarily unavailable, either platform-wide or for the asset.\n- `MARKET_PAUSED`: ITN minting or redeeming is paused for all assets.\n- `PAUSED_GM_CHAIN`: ITN minting or redeeming is paused on the network. Only returned per network.\n- `ASSET_PAUSED`: The asset is paused for ITN. Only returned per network.\n\nFor limits on how much you can mint or redeem, see [Get ITN Limits for an Asset](https://docs.ondo.finance/api-reference/itn/get-itn-limits-for-an-asset).\n\nFor caching details on this endpoint, please see: [Endpoint Caching](https://docs.ondo.finance/api-reference/endpoint-caching).\n\nFor the complete ITN workflow, see [ITN Integration](https://docs.ondo.finance/api-reference/itn-integration).\n",
+        "operationId": "getITNStatus",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetITNStatusResponse"
+                },
+                "example": {
+                  "timestamp": 1759777200000,
+                  "currentSession": "regular",
+                  "mint": {
+                    "isOpen": true,
+                    "reason": null
+                  },
+                  "redeem": {
+                    "isOpen": true,
+                    "reason": null
+                  },
+                  "assets": [
+                    {
+                      "symbol": "AAPLon",
+                      "networks": [
+                        {
+                          "networkChainId": "bsc-56",
+                          "alpacaNetwork": "binance",
+                          "mint": {
+                            "enabled": false,
+                            "reason": {
+                              "code": "PAUSED_GM_CHAIN",
+                              "message": "chain is paused",
+                              "documentation": "https://docs.ondo.finance/api-reference/error-codes#paused_gm_chain"
+                            }
+                          },
+                          "redeem": {
+                            "enabled": true,
+                            "reason": null
+                          }
+                        },
+                        {
+                          "networkChainId": "ethereum-1",
+                          "alpacaNetwork": "ethereum",
+                          "mint": {
+                            "enabled": true,
+                            "reason": null
+                          },
+                          "redeem": {
+                            "enabled": true,
+                            "reason": null
+                          }
+                        }
+                      ]
+                    },
+                    "..."
+                  ]
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "examples": {
+                  "error": {
+                    "value": {
+                      "code": "MISSING_API_KEY",
+                      "message": "missing API key",
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#missing_api_key"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "The account has exceeded its rate limits. Please see the returned message and documentation for details.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "examples": {
+                  "error": {
+                    "value": {
+                      "code": "RATE_LIMITED",
+                      "message": "rate limit exceeded",
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#rate_limited"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An internal server error occurred. Please see the returned message and documentation for details.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "examples": {
+                  "error": {
+                    "value": {
+                      "code": "INTERNAL_ERROR",
+                      "message": "An internal server error occurred. Please see the returned message and documentation for details.",
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#internal_error"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "apiKey": []
+          }
+        ]
+      }
+    },
+    "/v1/itn/assets/{symbol}/limits": {
+      "get": {
+        "tags": [
+          "ITN"
+        ],
+        "summary": "Get ITN Limits for an Asset",
+        "description": "This endpoint returns your ITN mint and redeem limits for an asset on each network it is deployed on, and how much you can still mint and redeem in the current session. All amounts are USD notional values.\n\nYour Ondo account must be linked to an Alpaca account for ITN. See the prerequisites in [ITN Integration](https://docs.ondo.finance/api-reference/itn-integration).\n\nLimits:\n- `sessionLimits` lists your limit for each market session. A limit of `\"0\"` means that side is closed during the session.\n- `remaining` is the amount you can still mint or redeem on the network in the current session. Your account limit is shared across networks.\n- `minMintNotional` is the smallest mint request accepted.\n\nThis endpoint does not report pauses. To check whether minting or redeeming is open, see [Get ITN Status](https://docs.ondo.finance/api-reference/itn/get-itn-status).\n\nFor caching details on this endpoint, please see: [Endpoint Caching](https://docs.ondo.finance/api-reference/endpoint-caching).\n\nFor the complete ITN workflow, see [ITN Integration](https://docs.ondo.finance/api-reference/itn-integration).\n",
+        "operationId": "getITNLimits",
+        "parameters": [
+          {
+            "name": "symbol",
+            "in": "path",
+            "description": "The GM token symbol",
+            "example": "AAPLon",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetITNLimitsResponse"
+                },
+                "example": {
+                  "timestamp": 1759777200000,
+                  "symbol": "AAPLon",
+                  "currentSession": "regular",
+                  "minMintNotional": "1000",
+                  "networks": [
+                    {
+                      "networkChainId": "ethereum-1",
+                      "alpacaNetwork": "ethereum",
+                      "sessionLimits": [
+                        {
+                          "session": "premarket",
+                          "mint": "1000000",
+                          "redeem": "1000000"
+                        },
+                        {
+                          "session": "regular",
+                          "mint": "2000000",
+                          "redeem": "2000000"
+                        },
+                        {
+                          "session": "postmarket",
+                          "mint": "1000000",
+                          "redeem": "1000000"
+                        },
+                        {
+                          "session": "overnight",
+                          "mint": "1000000",
+                          "redeem": "1000000"
+                        },
+                        {
+                          "session": "offhours",
+                          "mint": "500000",
+                          "redeem": "500000"
+                        }
+                      ],
+                      "remaining": {
+                        "mint": "1880000",
+                        "redeem": "2000000"
+                      }
+                    },
+                    "..."
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "One of the request parameters is invalid. Please see the returned message and documentation for details.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "examples": {
+                  "error": {
+                    "value": {
+                      "code": "INVALID_SYMBOL",
+                      "message": "invalid symbol; must be at least 3 characters long and end with 'on'",
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#invalid_symbol"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid API key.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "examples": {
+                  "error": {
+                    "value": {
+                      "code": "MISSING_API_KEY",
+                      "message": "missing API key",
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#missing_api_key"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "The account is not eligible for ITN. Please see the returned message and documentation for details.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "examples": {
+                  "error": {
+                    "value": {
+                      "code": "ITN_ACCOUNT_NOT_ELIGIBLE",
+                      "message": "account or wallet is not eligible for ITN",
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#itn_account_not_eligible"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "The provided asset symbol does not exist or is not available through ITN. Please see the returned message and documentation for details.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "examples": {
+                  "error": {
+                    "value": {
+                      "code": "ASSET_NOT_FOUND",
+                      "message": "asset not found",
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#asset_not_found"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "The account has exceeded its rate limits. Please see the returned message and documentation for details.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "examples": {
+                  "error": {
+                    "value": {
+                      "code": "RATE_LIMITED",
+                      "message": "rate limit exceeded",
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#rate_limited"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An internal server error occurred. Please see the returned message and documentation for details.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                },
+                "examples": {
+                  "error": {
+                    "value": {
+                      "code": "INTERNAL_ERROR",
+                      "message": "An internal server error occurred. Please see the returned message and documentation for details.",
+                      "documentation": "https://docs.ondo.finance/api-reference/error-codes#internal_error"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "apiKey": []
+          }
+        ]
+      }
     }
   },
   "components": {
@@ -5176,6 +5620,403 @@
         "items": {
           "$ref": "#/components/schemas/Portfolio"
         }
+      },
+      "ListITNAssetsResponse": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/ITNAsset"
+        }
+      },
+      "ITNAsset": {
+        "type": "object",
+        "properties": {
+          "symbol": {
+            "type": "string",
+            "description": "The GM token symbol.",
+            "example": "AAPLon"
+          },
+          "ticker": {
+            "type": "string",
+            "description": "The stock ticker associated with the asset.",
+            "example": "AAPL"
+          },
+          "networks": {
+            "type": "array",
+            "description": "The networks the asset is available on through ITN.",
+            "items": {
+              "$ref": "#/components/schemas/ITNNetwork"
+            }
+          }
+        },
+        "required": [
+          "symbol",
+          "ticker",
+          "networks"
+        ]
+      },
+      "ITNNetwork": {
+        "type": "object",
+        "properties": {
+          "networkChainId": {
+            "$ref": "#/components/schemas/GMChains"
+          },
+          "evmChainId": {
+            "type": "integer",
+            "format": "int64",
+            "description": "The EVM chain ID of the network. Omitted for non-EVM networks.",
+            "example": 1
+          },
+          "alpacaNetwork": {
+            "type": "string",
+            "description": "Alpaca's name for the network. Use this value when submitting a request to Alpaca.",
+            "example": "ethereum"
+          },
+          "tokenAddress": {
+            "type": "string",
+            "description": "The token contract address on the network.",
+            "example": "0x14c3abf95cb9c93a8b82c1cdcb76d72cb87b2d4c"
+          },
+          "decimals": {
+            "type": "integer",
+            "format": "int64",
+            "description": "The number of decimal places for the token on the network.",
+            "example": 18
+          },
+          "mintFeeBps": {
+            "type": "integer",
+            "format": "int64",
+            "description": "The ITN mint fee, in basis points.",
+            "example": 0
+          },
+          "redeemFeeBps": {
+            "type": "integer",
+            "format": "int64",
+            "description": "The ITN redeem fee, in basis points.",
+            "example": 5
+          }
+        },
+        "required": [
+          "networkChainId",
+          "alpacaNetwork",
+          "tokenAddress",
+          "decimals",
+          "mintFeeBps",
+          "redeemFeeBps"
+        ]
+      },
+      "GetITNStatusResponse": {
+        "type": "object",
+        "properties": {
+          "timestamp": {
+            "type": "number",
+            "description": "The Unix timestamp in milliseconds when the status was evaluated.",
+            "example": 1759777200000
+          },
+          "currentSession": {
+            "type": "string",
+            "description": "The current market session.",
+            "enum": [
+              "premarket",
+              "regular",
+              "postmarket",
+              "overnight",
+              "offhours"
+            ],
+            "example": "regular"
+          },
+          "mint": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ITNMarketStatus"
+              }
+            ],
+            "description": "Whether ITN minting is open globally."
+          },
+          "redeem": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ITNMarketStatus"
+              }
+            ],
+            "description": "Whether ITN redeeming is open globally."
+          },
+          "assets": {
+            "type": "array",
+            "description": "The availability of each ITN asset on each network.",
+            "items": {
+              "$ref": "#/components/schemas/ITNAssetStatus"
+            }
+          }
+        },
+        "required": [
+          "timestamp",
+          "currentSession",
+          "mint",
+          "redeem",
+          "assets"
+        ]
+      },
+      "ITNMarketStatus": {
+        "type": "object",
+        "properties": {
+          "isOpen": {
+            "type": "boolean",
+            "description": "Indicates whether the side is open globally.",
+            "example": true
+          },
+          "reason": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ITNStatusReason"
+              }
+            ],
+            "nullable": true,
+            "description": "The reason the side is closed. `null` when the side is open."
+          }
+        },
+        "required": [
+          "isOpen",
+          "reason"
+        ]
+      },
+      "ITNAssetStatus": {
+        "type": "object",
+        "properties": {
+          "symbol": {
+            "type": "string",
+            "description": "The GM token symbol.",
+            "example": "AAPLon"
+          },
+          "networks": {
+            "type": "array",
+            "description": "The asset's availability on each network.",
+            "items": {
+              "$ref": "#/components/schemas/ITNNetworkStatus"
+            }
+          }
+        },
+        "required": [
+          "symbol",
+          "networks"
+        ]
+      },
+      "ITNNetworkStatus": {
+        "type": "object",
+        "properties": {
+          "networkChainId": {
+            "$ref": "#/components/schemas/GMChains"
+          },
+          "alpacaNetwork": {
+            "type": "string",
+            "description": "Alpaca's name for the network.",
+            "example": "ethereum"
+          },
+          "mint": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ITNAvailability"
+              }
+            ],
+            "description": "Whether minting is available for the asset on the network."
+          },
+          "redeem": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ITNAvailability"
+              }
+            ],
+            "description": "Whether redeeming is available for the asset on the network."
+          }
+        },
+        "required": [
+          "networkChainId",
+          "alpacaNetwork",
+          "mint",
+          "redeem"
+        ]
+      },
+      "ITNAvailability": {
+        "type": "object",
+        "properties": {
+          "enabled": {
+            "type": "boolean",
+            "description": "Indicates whether the side is available for the asset on the network.",
+            "example": true
+          },
+          "reason": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ITNStatusReason"
+              }
+            ],
+            "nullable": true,
+            "description": "The reason the side is unavailable. `null` when the side is available."
+          }
+        },
+        "required": [
+          "enabled",
+          "reason"
+        ]
+      },
+      "ITNStatusReason": {
+        "description": "Reason ITN minting or redeeming is unavailable.",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/ReasonBase"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "code": {
+                "$ref": "#/components/schemas/ITNStatusReasonCode"
+              }
+            },
+            "required": [
+              "code"
+            ]
+          }
+        ]
+      },
+      "ITNStatusReasonCode": {
+        "type": "string",
+        "enum": [
+          "ITN_UNAVAILABLE",
+          "MARKET_PAUSED",
+          "PAUSED_GM_CHAIN",
+          "ASSET_PAUSED"
+        ],
+        "description": "The code indicating why ITN minting or redeeming is unavailable."
+      },
+      "GetITNLimitsResponse": {
+        "type": "object",
+        "properties": {
+          "timestamp": {
+            "type": "number",
+            "description": "The Unix timestamp in milliseconds when the limits were evaluated.",
+            "example": 1759777200000
+          },
+          "symbol": {
+            "type": "string",
+            "description": "The GM token symbol.",
+            "example": "AAPLon"
+          },
+          "currentSession": {
+            "type": "string",
+            "description": "The current market session. `remaining` applies to this session.",
+            "enum": [
+              "premarket",
+              "regular",
+              "postmarket",
+              "overnight",
+              "offhours"
+            ],
+            "example": "regular"
+          },
+          "minMintNotional": {
+            "type": "string",
+            "description": "The minimum USD notional value of a mint request, represented as a string-encoded decimal with up to 2 digits after the decimal point.",
+            "example": "1000"
+          },
+          "networks": {
+            "type": "array",
+            "description": "Your limits for the asset on each network it is deployed on.",
+            "items": {
+              "$ref": "#/components/schemas/ITNNetworkLimits"
+            }
+          }
+        },
+        "required": [
+          "timestamp",
+          "symbol",
+          "currentSession",
+          "minMintNotional",
+          "networks"
+        ]
+      },
+      "ITNNetworkLimits": {
+        "type": "object",
+        "properties": {
+          "networkChainId": {
+            "$ref": "#/components/schemas/GMChains"
+          },
+          "alpacaNetwork": {
+            "type": "string",
+            "description": "Alpaca's name for the network.",
+            "example": "ethereum"
+          },
+          "sessionLimits": {
+            "type": "array",
+            "description": "Your mint and redeem limit for each market session.",
+            "items": {
+              "$ref": "#/components/schemas/ITNSessionLimit"
+            }
+          },
+          "remaining": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ITNSideAmounts"
+              }
+            ],
+            "description": "The USD notional value you can still mint or redeem on the network in the current session."
+          }
+        },
+        "required": [
+          "networkChainId",
+          "alpacaNetwork",
+          "sessionLimits",
+          "remaining"
+        ]
+      },
+      "ITNSessionLimit": {
+        "type": "object",
+        "properties": {
+          "session": {
+            "type": "string",
+            "description": "The market session.",
+            "enum": [
+              "premarket",
+              "regular",
+              "postmarket",
+              "overnight",
+              "offhours"
+            ],
+            "example": "regular"
+          },
+          "mint": {
+            "type": "string",
+            "description": "The maximum USD notional value you can mint during the session, represented as a string-encoded decimal with up to 2 digits after the decimal point. `\"0\"` means minting is closed during the session.",
+            "example": "2000000"
+          },
+          "redeem": {
+            "type": "string",
+            "description": "The maximum USD notional value you can redeem during the session, represented as a string-encoded decimal with up to 2 digits after the decimal point. `\"0\"` means redeeming is closed during the session.",
+            "example": "2000000"
+          }
+        },
+        "required": [
+          "session",
+          "mint",
+          "redeem"
+        ]
+      },
+      "ITNSideAmounts": {
+        "type": "object",
+        "properties": {
+          "mint": {
+            "type": "string",
+            "description": "The remaining USD notional value you can mint, represented as a string-encoded decimal with up to 2 digits after the decimal point.",
+            "example": "1880000"
+          },
+          "redeem": {
+            "type": "string",
+            "description": "The remaining USD notional value you can redeem, represented as a string-encoded decimal with up to 2 digits after the decimal point.",
+            "example": "2000000"
+          }
+        },
+        "required": [
+          "mint",
+          "redeem"
+        ]
       },
       "ErrorResponse": {
         "type": "object",

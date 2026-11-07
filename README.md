@@ -13,7 +13,7 @@ Every time you connect n8n to ondo-finance, you waste hours mapping endpoints, d
 
 **What if connecting n8n to ondo-finance took 5 minutes, not half a day?**
 
-This node gives you **7+ resources** out of the box: **Attestations**, **Assets**, **Portfolios**, **Tickers**, **Chains**, and 2 more: with full CRUD operations, typed parameters, and zero manual configuration.
+This node gives you **8+ resources** out of the box: **Attestations**, **Assets**, **Portfolios**, **Tickers**, **Chains**, and 3 more: with full CRUD operations, typed parameters, and zero manual configuration.
 
 ---
 
@@ -114,6 +114,15 @@ That's it. No configuration files. No code. It just works.
 
 - Get Current Market Status
 - Get Asset Statuses
+
+</details>
+
+<details>
+<summary><b>ITN</b> (3 operations)</summary>
+
+- Get List ITN Assets
+- Get ITN Status
+- Get ITN Limits for an Asset
 
 </details>
 
