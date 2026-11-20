@@ -52,7 +52,7 @@
           "Attestations"
         ],
         "summary": "Request a Mint or Redeem Attestation",
-        "description": "An attestation is a signed payload that authorizes a user to mint or redeem tokens. Each attestation is only valid for a limited time and is determined by the duration in the request. A user can specify a duration of `short` for a tighter price spread or `long` for an extended validity period.\n\nNote: There are specific user and session limits which can prevent the creation of an attestation. For more information on limits, see the [Get Trading Limits](https://docs.ondo.finance/api-reference/limits/get-trading-limits) endpoint.\n\nSee also: [Error Codes](https://docs.ondo.finance/api-reference/error-codes)\n",
+        "description": "An attestation is a signed payload that authorizes a user to mint or redeem tokens. Each attestation is valid for a limited time. The `expiration` field in the response gives the time when the attestation expires. Submit the attestation on-chain before that time.\n\nNote: There are specific user and session limits which can prevent the creation of an attestation. For more information on limits, see the [Get Trading Limits](https://docs.ondo.finance/api-reference/limits/get-trading-limits) endpoint.\n\nSee also: [Error Codes](https://docs.ondo.finance/api-reference/error-codes)\n",
         "operationId": "createAttestation",
         "requestBody": {
           "description": "Request a mint or redeem attestation.",
@@ -3934,7 +3934,7 @@
       },
       "AttestationDurationEnum": {
         "type": "string",
-        "description": "Specifies the desired validity period for the attestation. Users can specify a duration of 'short' \nfor a tighter price spread or 'long' for an extended validity period.\n",
+        "description": "Optional. Reserved for future use. The API accepts `short` or `long` and rejects other values with `INVALID_DURATION`. The value currently has no effect: the price and `expiration` are the same for both values.\n",
         "enum": [
           "short",
           "long"
